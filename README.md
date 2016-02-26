@@ -21,3 +21,13 @@ Dashboard methods:
 
 - Display event is processed any way (in case all fields are empty - provides all events from pool otherwise - all matching events)
 (e.g. title=Java&day=&time= displays ALL events with title "Java")
+
+What to fix:
+
+- Create specified pages for methods, available from dashboard
+
+- Exclude "bidlocod" such as crazy unreadable loops from Remove and Display servlets
+
+- Organize classes by packages
+
+- Make a little bit "prettier" (HTML improvement/CSS implementation) 
