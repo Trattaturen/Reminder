@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/add")
 public class AddEventServlet extends HttpServlet {
@@ -16,9 +17,10 @@ public class AddEventServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-
 		PrintWriter out = response.getWriter();
+		HttpSession ses = request.getSession(false);
+
+		response.setContentType("text/html");
 
 		String title = request.getParameter("title");
 		String day = request.getParameter("day");
@@ -27,7 +29,7 @@ public class AddEventServlet extends HttpServlet {
 		if (title == "" || day == "" || time == "") {
 
 			out.write("Adding failed! (Wrong parameters in request) ");
-			
+
 		} else {
 			EventRepo.addEvent(new Event(title, day, time));
 			out.write("<h1>New event added succesfully!</h1>");
@@ -39,6 +41,6 @@ public class AddEventServlet extends HttpServlet {
 		}
 
 		request.getRequestDispatcher("mainpagebutton.html").include(request, response);
-	}
 
+	}
 }
