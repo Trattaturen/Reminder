@@ -21,9 +21,12 @@ public class ActionServlet extends HttpServlet {
 			request.getRequestDispatcher("/add").forward(request, response);
 		} else if (method.equals("remove")) {
 			request.getRequestDispatcher("/remove").forward(request, response);
-		} else if (method.equals("search")) {
-			request.getRequestDispatcher("/search").forward(request, response);
-		} else {
+			/*
+			 * I think there is no reason to search something as there is
+			 * display method } else if (method.equals("search")) {
+			 * request.getRequestDispatcher("/search").forward(request,
+			 * response);
+			 */ } else {
 			request.getRequestDispatcher("/display").forward(request, response);
 		}
 
