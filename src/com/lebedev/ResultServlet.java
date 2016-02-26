@@ -15,21 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 public class ResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String method = (String) request.getParameter("method");
-		//System.out.println(method);
-		if (method.equals("add")){
+
+		if (method.equals("add")) {
 			request.getRequestDispatcher("/add").forward(request, response);
-		} else if (method.equals("remove")){
+		} else if (method.equals("remove")) {
 			request.getRequestDispatcher("/remove").forward(request, response);
-		} else if (method.equals("search")){
+		} else if (method.equals("search")) {
 			request.getRequestDispatcher("/search").forward(request, response);
-		} else{
+		} else {
 			request.getRequestDispatcher("/display").forward(request, response);
 		}
-		
+
 	}
 
 }

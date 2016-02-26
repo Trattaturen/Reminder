@@ -19,16 +19,16 @@ public class AddEventServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		PrintWriter out = response.getWriter();
-		String title = request.getParameter("title");
 
+		String title = request.getParameter("title");
 		String day = request.getParameter("day");
 		String time = request.getParameter("time");
 
 		if (title == "" || day == "" || time == "") {
 
 			out.write("Adding failed! (Wrong parameters in request) ");
+			
 		} else {
-
 			EventRepo.addEvent(new Event(title, day, time));
 			out.write("<h1>New event added succesfully!</h1>");
 			out.write("<p> All Events in pool: <p><br>");

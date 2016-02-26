@@ -23,8 +23,10 @@ public class DisplayEventServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		ArrayList<String> paramsArray = new ArrayList<>();
+
 		// Getting all parameters as Enumeration
 		Enumeration<String> paramsEnum = request.getParameterNames();
+
 		while (paramsEnum.hasMoreElements()) {
 			String paramName = paramsEnum.nextElement();
 			// Clearing not needed parameter and not filled form parameters

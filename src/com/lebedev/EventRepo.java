@@ -8,14 +8,14 @@ public class EventRepo {
 
 	public static void addEvent(Event e) {
 		repo.add(e);
-//		System.out.println(e);
+
 	}
-	
-	public static ArrayList<Event> getRepo(){
+
+	public static ArrayList<Event> getRepo() {
 		return repo;
 	}
-	
-	public static boolean removeEvent(Event e){
+
+	public static boolean removeEvent(Event e) {
 		return repo.remove(e);
 	}
 }

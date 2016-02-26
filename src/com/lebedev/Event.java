@@ -1,9 +1,9 @@
 package com.lebedev;
 
 public class Event {
-	String title = "Unknown";
-	String day = "Unknown";
-	String time = "Unknown";
+	String title = "";
+	String day = "";
+	String time = "";
 
 	public Event(String title) {
 		this.title = title;
@@ -18,7 +18,6 @@ public class Event {
 	public Event(String title, String day, String time) {
 		this(title, day);
 		this.time = time;
-		// System.out.println("third" + title+ day+ time);
 
 	}
 
