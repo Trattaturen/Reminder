@@ -24,6 +24,8 @@ Dashboard methods:
 
 What to fix:
 
+- Implement JSP/Filters
+
 - Create specified pages for methods, available from dashboard
 
 - Exclude "bidlocod" such as crazy unreadable loops from Remove and Display servlets
