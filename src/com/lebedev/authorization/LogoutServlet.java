@@ -1,4 +1,4 @@
-package com.lebedev;
+package com.lebedev.authorization;
 
 import java.io.IOException;
 import java.io.PrintWriter;

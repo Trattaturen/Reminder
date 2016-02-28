@@ -1,4 +1,4 @@
-package com.lebedev;
+package com.lebedev.logic;
 
 import java.util.ArrayList;
 

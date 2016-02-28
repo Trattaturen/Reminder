@@ -1,4 +1,4 @@
-package com.lebedev;
+package com.lebedev.eventhandlers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,31 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ResultServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/dash")
+public class DashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		PrintWriter out = response.getWriter();
 
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
-
 		request.getRequestDispatcher("links.html").include(request, response);
 
-		if (password.equals("123456")) {
+		HttpSession ses = request.getSession(false);
 
-			out.write("Welcome, " + name);
-			HttpSession session = request.getSession();
-			session.setAttribute("name", name);
-		} else {
+		if (ses == null || ses.getAttribute("name") == null) {
 
-			out.print("Sorry, username or password incorrect!");
+			out.write("You need to be logged in to acces Dashboard");
 			request.getRequestDispatcher("login.html").include(request, response);
+		} else {
+			request.getRequestDispatcher("dashboard.html").include(request, response);
 		}
 
 	}

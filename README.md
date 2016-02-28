@@ -11,23 +11,22 @@ What it does for now:
 
 - dashboard can be accesed if current session has a "name" attribute
 
-Dashboard methods:
+Dashboard contains:
 
-- Add event is proceeded only if all fields are filled (otherwise - error)
-(e.g. title=Java&day=&time=18.00 causes error)
+- User info
 
-- Remove event is processed any way. If  0 < filled fields < 3 - deletes all matching events. 
-(e.g. title=&day=Sunday&time= removes ALL events planned on Sunday)
+- Add event button: forwards to Add Event Page
 
-- Display event is processed any way (in case all fields are empty - provides all events from pool otherwise - all matching events)
-(e.g. title=Java&day=&time= displays ALL events with title "Java")
+- Display event button: forwards to Display Event Page (displays all events + allows to use filters (Title, Day, Time)
 
 What to fix:
 
-- Create specified pages for methods, available from dashboard
 
-- Exclude "bidlocod" such as crazy unreadable loops from Remove and Display servlets
+- Delete button on display page
 
-- Organize classes by packages
+- Authorization using filters
 
-- Make a little bit "prettier" (HTML improvement/CSS implementation) 
+- Html improvements/CSS implementation
+
+- Temporary DB (File) to save events
+

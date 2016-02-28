@@ -1,4 +1,4 @@
-package com.lebedev;
+package com.lebedev.eventhandlers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.lebedev.logic.Event;
+import com.lebedev.logic.EventRepo;
 
 @WebServlet("/search")
 public class SearchEventServlet extends HttpServlet {
