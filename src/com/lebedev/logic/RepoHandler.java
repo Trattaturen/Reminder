@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RepoHandler {
 
-	//search for matching elements
+	// search for matching elements
 	public static ArrayList<Event> find(HttpServletRequest request) {
 
 		ArrayList<String> cleanedParams = clearParameters(request);
@@ -46,7 +46,8 @@ public class RepoHandler {
 			return foundEvents;
 		}
 	}
-// Clear all request parameters(if some fields left empty)
+
+	// Clear all request parameters(if some fields left empty)
 	public static ArrayList<String> clearParameters(HttpServletRequest request) {
 
 		Enumeration<String> paramsEnum = request.getParameterNames();
@@ -75,4 +76,5 @@ public class RepoHandler {
 		return null;
 
 	}
+
 }

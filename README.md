@@ -34,7 +34,7 @@ Application to add/remove events (however there is no DB yet so a lifecycle of t
 
 - (after learning JSP) clean all code from HTML mess 
 
-- Temporary DB (File) to save events
+- (need advise) Temporary DB (File) to save events
 
 - (need review) do something with RepoHandler class
 
