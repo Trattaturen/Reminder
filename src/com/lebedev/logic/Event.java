@@ -1,12 +1,18 @@
 package com.lebedev.logic;
 
 public class Event {
+
+	private static int nextId;
+
 	private String title = "";
 	private String day = "";
 	private String time = "";
+	private int Id;
 
 	public Event(String title) {
 		this.setTitle(title);
+		setId(nextId++);
+
 	}
 
 	public Event(String title, String day) {
@@ -23,14 +29,15 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return ("<fieldset><legend>" + getTitle() + "</legend>" + "<b>Day: </b>" + getDay() + "<br>" + "<b>Time: </b>" + getTime()
-				+ "<br></fieldset>");
+
+		return ("<tr><td>" + getTitle() + "</td><td>" + getDay() + "</td><td>" + getTime() + "</td>");
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		Event e = (Event) obj;
-		if (e.getTitle().equals(this.getTitle()) && e.getDay().equals(this.getDay()) && e.getTime().equals(this.getTime())) {
+		if (e.getTitle().equals(this.getTitle()) && e.getDay().equals(this.getDay())
+				&& e.getTime().equals(this.getTime())) {
 			return true;
 		}
 
@@ -59,6 +66,14 @@ public class Event {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
 	}
 
 }

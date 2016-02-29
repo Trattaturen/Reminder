@@ -62,4 +62,16 @@ public class RepoHandler {
 		return cleanedParams;
 
 	}
+
+	public static Event findById(int id) {
+		for (Event e : EventRepo.getRepo()) {
+
+			if (e.getId() == id) {
+				return e;
+			}
+		}
+
+		return null;
+
+	}
 }

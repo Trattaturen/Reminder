@@ -37,10 +37,6 @@ public class AddEventServlet extends HttpServlet {
 		} else {
 			EventRepo.addEvent(new Event(title, day, time));
 			out.write("<h1>New event added succesfully!</h1>");
-			out.write("<p> All Events in pool: <p><br>");
-			for (Event e : EventRepo.getRepo()) {
-				out.write(e.toString());
-			}
 
 		}
 
