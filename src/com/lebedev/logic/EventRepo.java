@@ -15,8 +15,4 @@ public class EventRepo {
 		return repo;
 	}
 
-	public static boolean removeEvent(Event e) {
-		return repo.remove(e);
-	}
-
 }

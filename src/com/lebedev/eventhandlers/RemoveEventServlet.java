@@ -18,8 +18,7 @@ import com.lebedev.logic.RepoHandler;
 @WebServlet(name = "RemoveEventServlet", urlPatterns = "/remove")
 public class RemoveEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String MAIN_PAGE_BUTTON = "mainpagebutton.html";
-	 private static final String NULL_PARAMETERS = "<h1>Nothing removed</h1>";
+	private static final String NULL_PARAMETERS = "<h1>Nothing removed</h1>";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,6 +27,7 @@ public class RemoveEventServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		ArrayList<Event> toRemove = new ArrayList<>();
+
 		Enumeration<String> paramsEnum = request.getParameterNames();
 
 		while (paramsEnum.hasMoreElements()) {
@@ -44,26 +44,8 @@ public class RemoveEventServlet extends HttpServlet {
 		} else {
 			out.write(NULL_PARAMETERS);
 		}
-		
-		request.getRequestDispatcher(MAIN_PAGE_BUTTON).include(request, response);
-		/*
-		 * ArrayList<Event> foundEvents = RepoHandler.find(request);
-		 * 
-		 * if (foundEvents != null) {
-		 * 
-		 * EventRepo.getRepo().removeAll(foundEvents); out.write(
-		 * "<h1> Succesfully removed " + foundEvents.size() + " events </h1>");
-		 * 
-		 * } else {
-		 * 
-		 * out.write(NULL_PARAMETERS);
-		 * 
-		 * }
-		 * 
-		 * request.getRequestDispatcher(MAIN_PAGE_BUTTON).include(request,
-		 * response);
-		 * 
-		 * }
-		 */
+
+		request.getRequestDispatcher("mainpagebutton.html").include(request, response);
+
 	}
 }

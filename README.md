@@ -28,7 +28,13 @@ Application to add/remove events (however there is no DB yet so a lifecycle of t
 
 - (done) Authorization using filters 
 
-- (in progress. after this lessons) Html improvements/CSS implementation
+- (always in progress) Html improvements
+
+- (next lesson) CSS implementation
+
+- (after learning JSP) clean all code from HTML mess 
 
 - Temporary DB (File) to save events
+
+- (need review) do something with RepoHandler class
 

@@ -18,6 +18,8 @@ public class AddEventServlet extends HttpServlet {
 	private static final String TITLE = "title";
 	private static final String DAY = "day";
 	private static final String TIME = "time";
+	private static final String WRONG_PARAMETERS = "Adding failed! (Wrong parameters in request) ";
+	private static final String SUCCESS = "<h1>New event added succesfully!</h1>";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,11 +34,11 @@ public class AddEventServlet extends HttpServlet {
 
 		if (title == "" || day == "" || time == "") {
 
-			out.write("Adding failed! (Wrong parameters in request) ");
+			out.write(WRONG_PARAMETERS);
 
 		} else {
 			EventRepo.addEvent(new Event(title, day, time));
-			out.write("<h1>New event added succesfully!</h1>");
+			out.write(SUCCESS);
 
 		}
 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String LOGOUT_OK = "You successfully logged out!";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -24,7 +25,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		out.print("You successfully logged out!");
+		out.print(LOGOUT_OK);
 
 		out.close();
 	}

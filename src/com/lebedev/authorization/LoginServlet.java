@@ -16,14 +16,17 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String NAME = "name";
+	private static final String PASS = "password";
+	private static final String INCORRECT = "Password is incorrect!";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		PrintWriter out = response.getWriter();
 
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
+		String name = request.getParameter(NAME);
+		String password = request.getParameter(PASS);
 
 		request.getRequestDispatcher("links.html").include(request, response);
 
@@ -34,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("name", name);
 		} else {
 
-			out.print("Sorry, username or password incorrect!");
+			out.print(INCORRECT);
 			request.getRequestDispatcher("login.html").include(request, response);
 		}
 
