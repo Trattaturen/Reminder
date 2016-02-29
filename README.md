@@ -18,9 +18,12 @@ Application to add/remove events (however there is no DB yet so a lifecycle of t
 2. Add event button: forwards to Add Event Page
 
 3. Display event button: forwards to Display Event Page:
-           3.1. Displays all events
-           3.2. Allows to use filters (Title, Day, Time)
-           3.3. Allows to delete random quantity of displayed events 
+
+3.1. Displays all events
+
+3.2. Allows to use filters (Title, Day, Time)
+
+3.3. Allows to delete random quantity of displayed events 
 
 # What to fix:
 
