@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lebedev.logic.Event;
 import com.lebedev.logic.EventRepo;
 
-@WebServlet("/add")
+@WebServlet(name = "AddEventServlet", urlPatterns = "/add")
 public class AddEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String TITLE = "title";

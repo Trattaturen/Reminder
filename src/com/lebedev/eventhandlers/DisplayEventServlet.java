@@ -14,7 +14,7 @@ import com.lebedev.logic.Event;
 import com.lebedev.logic.EventRepo;
 import com.lebedev.logic.RepoHandler;
 
-@WebServlet("/display")
+@WebServlet(name = "DisplayEventServlet", urlPatterns = "/display")
 public class DisplayEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String MAIN_PAGE_BUTTON = "mainpagebutton.html";
