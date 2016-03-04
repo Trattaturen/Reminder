@@ -3,23 +3,7 @@ package com.remider.logic;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.reminder.dao.EventRepoHandler;
-
 public class RequestParamsHandler {
-
-	public static String addEvent(String title, String day, String time) {
-
-		if (checkParameters(title, day, time)) {
-
-			EventRepoHandler.addEvent(title, day, time);
-			return ("New event added succesfully!");
-
-		} else {
-
-			return ("Adding failed! (Wrong parameters in request)");
-
-		}
-	}
 
 	public static boolean checkParameters(String title, String day, String time) {
 

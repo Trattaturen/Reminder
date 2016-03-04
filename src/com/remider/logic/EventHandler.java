@@ -5,10 +5,45 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.reminder.dao.EventRepo;
+import com.reminder.dao.EventRepoHandler;
 import com.reminder.model.Event;
 
-public class FindEvent {
-	// Find matching Event
+public class EventHandler {
+
+	public static String addEvent(String title, String day, String time) {
+
+		if (RequestParamsHandler.checkParameters(title, day, time)) {
+
+			EventRepoHandler.addEvent(title, day, time);
+			return ("New event added succesfully!");
+
+		} else {
+
+			return ("Adding failed! (Wrong parameters in request)");
+
+		}
+	}
+
+	// Displays events, found by FIND method
+	public static String display(Map<String, String[]> paramMap) {
+		String result = "";
+
+		for (Event e : EventHandler.find(paramMap)) {
+			result = result + e.toString();
+		}
+
+		return result;
+	}
+
+	// Removes Events, found by FIND method
+	public static String remove(Map<String, String[]> paramMap) {
+		int found = EventHandler.find(paramMap).size();
+		EventRepoHandler.remove(EventHandler.find(paramMap));
+
+		return ("Removed " + found + " events");
+
+	}
+
 	public static ArrayList<Event> find(Map<String, String[]> paramMap) {
 
 		ArrayList<Event> result = new ArrayList<Event>();

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.reminder.dao.EventRepoHandler;
+import com.remider.logic.EventHandler;
 
 @WebServlet(name = "DisplayEventServlet", urlPatterns = "/display")
 public class DisplayEventServlet extends HttpServlet {
@@ -25,7 +25,7 @@ public class DisplayEventServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		out.write(EventRepoHandler.display(paramMap));
+		out.write(EventHandler.display(paramMap));
 
 	}
 }

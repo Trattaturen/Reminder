@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.reminder.dao.EventRepoHandler;
+import com.remider.logic.EventHandler;
 
 @WebServlet(name = "RemoveEventServlet", urlPatterns = "/remove")
 public class RemoveEventServlet extends HttpServlet {
@@ -25,7 +25,7 @@ public class RemoveEventServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		out.write(EventRepoHandler.remove(paramMap));
+		out.write(EventHandler.remove(paramMap));
 
 	}
 }

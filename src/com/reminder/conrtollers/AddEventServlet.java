@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.remider.logic.RequestParamsHandler;
+import com.remider.logic.EventHandler;
 
 @WebServlet(name = "AddEventServlet", urlPatterns = "/add")
 public class AddEventServlet extends HttpServlet {
@@ -24,7 +24,7 @@ public class AddEventServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 
-		out.write(RequestParamsHandler.addEvent(request.getParameter(TITLE), request.getParameter(DAY),
+		out.write(EventHandler.addEvent(request.getParameter(TITLE), request.getParameter(DAY),
 				request.getParameter(TIME)));
 
 	}
