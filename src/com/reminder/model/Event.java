@@ -2,14 +2,20 @@ package com.reminder.model;
 
 public class Event {
 
+	private static int count;
+
+	private int id;
 	private String title;
 	private String day;
 	private String time;
 
 	public Event(String title, String day, String time) {
-		this.setTitle(title);
-		this.setDay(day);
-		this.setTime(time);
+
+		this.title = title;
+		this.day = day;
+		this.time = time;
+		this.id = count;
+		count++;
 
 	}
 
@@ -41,6 +47,10 @@ public class Event {
 
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }
