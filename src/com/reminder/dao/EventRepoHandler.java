@@ -18,4 +18,43 @@ public class EventRepoHandler {
 
 	}
 
+	public static String displayAll() {
+		String all = "";
+		for (Event e : EventRepo.getRepo()) {
+			all = all + e.toString();
+		}
+		return all;
+	}
+
+	// Following methods can be "polymorphized". Need advice
+
+	public static ArrayList<Event> findByTitle(String value) {
+		ArrayList<Event> found = new ArrayList<Event>();
+		for (Event e : EventRepo.getRepo()) {
+			if (e.getTitle().equals(value)) {
+				found.add(e);
+			}
+		}
+		return found;
+	}
+
+	public static ArrayList<Event> findByDay(String value) {
+		ArrayList<Event> found = new ArrayList<Event>();
+		for (Event e : EventRepo.getRepo()) {
+			if (e.getDay().equals(value)) {
+				found.add(e);
+			}
+		}
+		return found;
+	}
+
+	public static ArrayList<Event> findByTime(String value) {
+		ArrayList<Event> found = new ArrayList<Event>();
+		for (Event e : EventRepo.getRepo()) {
+			if (e.getTime().equals(value)) {
+				found.add(e);
+			}
+		}
+		return found;
+	}
 }
