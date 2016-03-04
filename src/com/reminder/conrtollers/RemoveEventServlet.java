@@ -1,32 +1,31 @@
-package com.lebedev.authorization;
+package com.reminder.conrtollers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+import com.reminder.dao.EventRepoHandler;
+
+@WebServlet(name = "RemoveEventServlet", urlPatterns = "/remove")
+public class RemoveEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String LOGOUT_OK = "You successfully logged out!";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		response.setContentType("text/html");
+
+		Map<String, String[]> paramMap = request.getParameterMap();
+
 		PrintWriter out = response.getWriter();
 
-		request.getRequestDispatcher("links.html").include(request, response);
+		out.write(EventRepoHandler.remove(paramMap));
 
-		HttpSession session = request.getSession();
-		session.invalidate();
-
-		out.print(LOGOUT_OK);
-
-		out.close();
 	}
 }
