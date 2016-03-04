@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.remider.logic.EventHandler;
+import com.reminder.logic.EventHandler;
 
 @WebServlet(name = "DisplayEventServlet", urlPatterns = "/display")
 public class DisplayEventServlet extends HttpServlet {

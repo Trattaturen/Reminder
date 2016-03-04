@@ -1,4 +1,4 @@
-package com.remider.logic;
+package com.reminder.logic;
 
 import java.util.ArrayList;
 import java.util.Map;
