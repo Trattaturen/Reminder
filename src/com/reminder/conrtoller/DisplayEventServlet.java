@@ -18,6 +18,7 @@ public class DisplayEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONTENT_TYPE = "text/html";
+	private static final String DATABASE_EMPTY = "Nothing to display. No events in DB";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,8 +27,12 @@ public class DisplayEventServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		for (Event event : EventService.displayEvent()) {
-			out.write(event.toString());
+		if (!EventService.getAll().isEmpty()) {
+			for (Event event : EventService.getAll()) {
+				out.write(event.toString());
+			}
+		} else {
+			out.write(DATABASE_EMPTY);
 		}
 
 	}

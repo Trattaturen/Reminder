@@ -13,14 +13,9 @@ public class EventUtil {
 		return null;
 	}
 
-	public static boolean checkParameters(String title, String day, String time) {
+	private static boolean checkParameters(String title, String day, String time) {
 
-		if ((title == null || day == null || time == null || (title.isEmpty() || day.isEmpty() || time.isEmpty()))) {
+		return !((title == null || day == null || time == null || (title.isEmpty() || day.isEmpty() || time.isEmpty())));
 
-			return false;
-
-		}
-
-		return true;
 	}
 }

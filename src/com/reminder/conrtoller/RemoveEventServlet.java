@@ -17,9 +17,10 @@ public class RemoveEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONTENT_TYPE = "text/html";
-	private static final String PARAMETER_ERROR = "Nothing deleted! Wrong parameters. Try /remove?id=NUMBER";
+	private static final String PARAMETER_ERROR = "Nothing to delete! Wrong parameters. Try /remove?id=NUMBER";
 	private static final String NOT_FOUND_ERROR = "Event with provided ID not found!";
-	private static final String SUCCESS = "Succesfully deleted event";
+	private static final String SUCCESS = "Event succesfully deleted";
+	private static final String ID = "id";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,8 +30,10 @@ public class RemoveEventServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		try {
-			int toRemoveId = Integer.parseInt(request.getParameter("id"));
-			if (EventService.removeEvent(toRemoveId)) {
+
+			int toRemoveId = Integer.parseInt(request.getParameter(ID));
+
+			if (EventService.remove(toRemoveId)) {
 				out.write(SUCCESS);
 			} else {
 				out.write(NOT_FOUND_ERROR);

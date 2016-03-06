@@ -14,4 +14,3 @@ Application to add/remove events
 
 # What to fix:
 
-- Get review

@@ -22,7 +22,7 @@ public class Event {
 	@Override
 	public String toString() {
 
-		return (getTitle() + "<br>" + getDay() + "<br>" + getTime() + "<br>");
+		return getTitle() + "<br>" + getDay() + "<br>" + getTime() + "<br>";
 	}
 
 	public String getTitle() {

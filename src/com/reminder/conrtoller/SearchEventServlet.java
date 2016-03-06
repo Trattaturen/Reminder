@@ -20,26 +20,32 @@ public class SearchEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONTENT_TYPE = "text/html";
-	private static final String ERROR = "Nothing found! Wrong parameters";
+	private static final String NOT_FOUND_ERROR = "Nothing was found!";
+	private static final String SUCCESS = "Matching event found <br>";
+	private static final String PARAMETER_ERROR = "Specify at least one parameter!";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType(CONTENT_TYPE);
 
-		Enumeration<String> paramsEnum = request.getParameterNames();
-
 		PrintWriter out = response.getWriter();
 
-		List<Event> foundEvents = EventService.findEvent(paramsEnum);
+		Enumeration<String> paramsEnum = request.getParameterNames();
 
-		if (foundEvents.size() == 0) {
-			out.write(ERROR);
-		} else {
+		if (paramsEnum.hasMoreElements()) {
+			List<Event> foundEvents = EventService.find(paramsEnum.nextElement());
 
-			for (Event event : foundEvents) {
-				out.write(event.toString());
+			if (foundEvents.size() == 0) {
+				out.write(NOT_FOUND_ERROR);
+			} else {
+				out.write(SUCCESS);
+				for (Event event : foundEvents) {
+					out.write(event.toString());
+				}
 			}
+		} else {
+			out.write(PARAMETER_ERROR);
 		}
 
 	}

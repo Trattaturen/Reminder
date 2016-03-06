@@ -1,7 +1,5 @@
 package com.reminder.service;
 
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 
 import com.reminder.dao.EventRepoHandler;
@@ -9,28 +7,25 @@ import com.reminder.model.Event;
 
 public class EventService {
 
-	public static void addEvent(Event toAddEvent) {
-		EventRepoHandler.addEvent(toAddEvent);
+	public static boolean add(Event toAddEvent) {
+		
+		return EventRepoHandler.add(toAddEvent);
 	}
 
-	public static List<Event> displayEvent() {
-		return EventRepoHandler.displayAll();
+	public static List<Event> getAll() {
+		
+		return EventRepoHandler.getAll();
 	}
 
-	public static boolean removeEvent(int toRemoveId) {
+	public static boolean remove(int toRemoveId) {
 
-		return EventRepoHandler.removeEventById(toRemoveId);
+		return EventRepoHandler.removeById(toRemoveId);
 
 	}
 
-	public static List<Event> findEvent(Enumeration<String> paramsEnum) {
+	public static List<Event> find(String value) {
 
-		if (paramsEnum.hasMoreElements()) {
-
-			return EventRepoHandler.findByValue(paramsEnum.nextElement());
-		}
-
-		return Collections.emptyList();
+		return EventRepoHandler.findByValue(value);
 
 	}
 }

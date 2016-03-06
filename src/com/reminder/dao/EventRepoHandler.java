@@ -7,16 +7,21 @@ import com.reminder.model.Event;
 
 public class EventRepoHandler {
 
-	public static void addEvent(Event toAddEvent) {
+	public static boolean add(Event toAddEvent) {
 
-		EventRepo.getRepo().add(toAddEvent);
+		try {
+			EventRepo.getRepo().add(toAddEvent);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 
 	}
 
-	public static boolean removeEventById(int toRemoveId) {
+	public static boolean removeById(int id) {
 
 		for (Event event : EventRepo.getRepo()) {
-			if (event.getId() == toRemoveId) {
+			if (event.getId() == id) {
 				EventRepo.getRepo().remove(event);
 				return true;
 			}
@@ -25,7 +30,7 @@ public class EventRepoHandler {
 
 	}
 
-	public static List<Event> displayAll() {
+	public static List<Event> getAll() {
 		List<Event> allEvents = new ArrayList<>();
 		for (Event e : EventRepo.getRepo()) {
 			allEvents.add(e);
@@ -34,7 +39,6 @@ public class EventRepoHandler {
 	}
 
 	public static List<Event> findByValue(String value) {
-		System.out.println(value);
 		List<Event> found = new ArrayList<Event>();
 		for (Event event : EventRepo.getRepo()) {
 			if (event.getTitle().equals(value) || event.getDay().equals(value) || event.getTime().equals(value)) {

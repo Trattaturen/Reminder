@@ -22,8 +22,9 @@ public class AddEventServlet extends HttpServlet {
 	private static final String DAY = "day";
 	private static final String TIME = "time";
 	private static final String CONTENT_TYPE = "text/html";
-	private static final String SUCCESS = "New Event added succesfully";
-	private static final String ERROR = "Wrong parameters. Nothing added!";
+	private static final String SUCCESS = "New Event was added succesfully";
+	private static final String PARAMETER_ERROR = "Wrong parameters. Nothing was added!";
+	private static final String DATABASE_ERROR = "Something is wrong with DB. Nothing was added";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,12 +38,16 @@ public class AddEventServlet extends HttpServlet {
 
 		if (newEvent == null) {
 
-			out.write(ERROR);
+			out.write(PARAMETER_ERROR);
 
 		} else {
 
-			EventService.addEvent(newEvent);
-			out.write(SUCCESS);
+			if (EventService.add(newEvent)) {
+				out.write(SUCCESS);
+			} else {
+				out.write(DATABASE_ERROR);
+			}
+
 		}
 
 	}
