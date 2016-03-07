@@ -1,0 +1,76 @@
+input, textarea, select {
+	width: 200px;
+}
+
+input.submitbutton {
+	width: 100px;
+}
+
+input.searchline {
+	width: 40%;
+}
+
+input.searchbutton {
+	width: 10%;
+}
+
+span.searchline {
+	background-color: lightgrey;
+	padding: 10px;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+a.links {
+	text-decoration: none;
+	padding: 5px;
+	border: 1px solid black;
+	color: black;
+	background-color: lightgrey;
+}
+
+a:hover.links {
+	background-color: grey;
+}
+
+body {
+	font-family: Verdana;
+}
+
+p {
+	font-size: 110%;
+}
+
+span.code {
+	background-color: lightgrey;
+	border: 1px solid black;
+	font-family: Courier New;
+	width: 10px;
+	padding: 10px;
+}
+
+p.code {
+	background-color: lightgrey;
+	border: 1px solid black;
+	width: 50%;
+	font-family: Courier New;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: left;
+	background-color: lightgrey;
+}
+
+table.display {
+	width: 50%;
+}
+
+th {
+	text-align: center;
+}
+
+td {
+	padding: 10px;
+}
