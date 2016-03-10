@@ -7,10 +7,11 @@ import com.reminder.model.Event;
 
 public class EventRepoHandler {
 
-	public static boolean add(Event toAddEvent) {
+	
+	public static boolean add(Event event) {
 
 		try {
-			EventRepo.getRepo().add(toAddEvent);
+			EventRepo.getRepo().add(event);
 			return true;
 		} catch (Exception e) {
 			return false;
