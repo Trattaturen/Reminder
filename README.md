@@ -9,7 +9,7 @@ Application to add/remove events
 
 - Remove Event /remove?id=INT (remove event by it`s ID)
 
-- Search Event /search?ANYTHING (search for ANYTHING in all Events fields)
+- Search Event /search?value=ANYTHING (search for ANYTHING in all Events fields)
 
 
 # What to fix:
