@@ -1,0 +1,32 @@
+body {
+	color: white;
+	background-color: #792c24;
+	font-family:sans-serif;
+}
+
+.links {
+	color: white;
+	background-color: #665e25;
+	text-decoration: none;
+	padding: 5px;
+}
+
+.inputs {
+	width: 150px;
+}
+
+img.screenshot {
+	padding: 5px;
+	border:2px solid #665e25;
+	border-radius:10px;
+}
+
+table.display, table.display td, table.display th{
+	border-collapse:collapse;
+	border:3px solid #665e25;
+}
+
+table.display td {
+	padding: 20px;
+	
+}

@@ -7,9 +7,10 @@ import com.reminder.model.Event;
 
 public class EventService {
 
-	public static boolean add(Event toAddEvent) {
+
+	public static boolean add(Event event) {
 		
-		return EventRepoHandler.add(toAddEvent);
+		return EventRepoHandler.add(event);
 	}
 
 	public static List<Event> getAll() {
@@ -17,9 +18,10 @@ public class EventService {
 		return EventRepoHandler.getAll();
 	}
 
-	public static boolean remove(int toRemoveId) {
 
-		return EventRepoHandler.removeById(toRemoveId);
+	public static boolean remove(int id) {
+
+		return EventRepoHandler.removeById(id);
 
 	}
 

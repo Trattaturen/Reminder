@@ -2,7 +2,7 @@ package com.reminder.model;
 
 public class Event {
 
-	private static int count;
+	private static int count = 1;
 
 	private int id;
 	private String title;
@@ -15,6 +15,7 @@ public class Event {
 		this.day = day;
 		this.time = time;
 		this.id = count;
+		//TODO: Id starts from zero. Unexpected behavior!
 		count++;
 
 	}

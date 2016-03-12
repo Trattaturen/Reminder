@@ -10,12 +10,15 @@ public class EventUtil {
 			return new Event(title, day, time);
 
 		}
-		return null;
+
+		throw new IllegalArgumentException();
+
 	}
 
 	private static boolean checkParameters(String title, String day, String time) {
 
-		return !((title == null || day == null || time == null || (title.isEmpty() || day.isEmpty() || time.isEmpty())));
+		return !((title == null || day == null || time == null
+				|| (title.isEmpty() || day.isEmpty() || time.isEmpty())));
 
 	}
 }

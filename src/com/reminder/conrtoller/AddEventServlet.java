@@ -33,22 +33,20 @@ public class AddEventServlet extends HttpServlet {
 
 		response.setContentType(CONTENT_TYPE);
 
-		Event newEvent = EventUtil.createEvent(request.getParameter(TITLE), request.getParameter(DAY),
-				request.getParameter(TIME));
+		try {
 
-		if (newEvent == null) {
-
-			out.write(PARAMETER_ERROR);
-
-		} else {
+			Event newEvent = EventUtil.createEvent(request.getParameter(TITLE), request.getParameter(DAY),
+					request.getParameter(TIME));
 
 			if (EventService.add(newEvent)) {
 				out.write(SUCCESS);
 			} else {
 				out.write(DATABASE_ERROR);
 			}
-
+		} catch (IllegalArgumentException e) {
+			out.write(PARAMETER_ERROR);
 		}
 
 	}
+
 }

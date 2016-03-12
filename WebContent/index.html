@@ -1,49 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="css/teststyle.css">
-<title>Reminder Home Page</title>
-</head>
-<body>
+	<html>
+		<head>
+			<link rel="stylesheet" href="css/style.css">
 
+			<title>Reminder Home Page</title>
 
-	<a class="links" href="D:/git/Reminder/WebContent/index.html">Home</a>
-	<a class="links" href="D:/git/Reminder/WebContent/add.html">Add</a>
-	<a class="links" href="D:/git/Reminder/WebContent/dashboard.html">Dashboard</a>
-	<hr>
+		</head>
 
+		<body>
 
-	<h1>Reminder project features</h1>
-	<ul>
+			<a class="links" href="index.html">Home</a>
+			<a class="links" href="add.html">Add</a>
+			<a class="links" href="dashboard.html">Dashboard</a>
+			<hr>
+	
+			<h1>Reminder project features:</h1>
+			<ul>
+				<li>
+					<h2>To navigate - use buttons</h2> 
+					<img class="screenshot" src="img/navigation.png" />
+				</li>
+				<li>
+					<h2>To Add new Event - specify <strong>all</strong> it`s parameters</h2> 
+					<img class="screenshot" src="img/add.png" /><br> 
+				</li>
+				<li>
+					<h2>To search for Event - set search<strong>value</strong></h2>
+					<img class="screenshot" src="img/search.png" /><br> 
+				</li>
+				<li>
+					<h2>To remove Event - input <strong>ID</strong></h2>
+					<img class="screenshot" src="img/remove.png" /><br> 
+				</li>
+				<li>
+					<h2>To display all Events - use following command</h2>
+					<img class="screenshot" src="img/display.png" /><br>
+				</li>
 
-		<li><h2>Add Event</h2>
-			<p>
-				To add event - specify <b>ALL</b> it`s parameters in command line
-			</p></li>
-			<span class="code">http://Reminder/add?title=Java&day=25.05.2016&time=14.00</span>
-
-		<li><h2>Display Event</h2></li>
-
-		<p>Displays all available events</p>
-
-		<span class="code">http://Reminder/display</span>
-
-		<li><h2>Search Event</h2></li>
-
-		<p>To search for existing events use parameter as a search pattern
-		</p>
-
-		<span class="code">http://Reminder/search?SomeValue</span>
-
-		<li><h2>Remove Event</h2></li>
-		<p>
-			To remove event - specify it`s <b>ID</b> in parameters
-		<p>
-			<span class="code">http://Reminder/remove?id=NUMBER</span>
-		</li>
-
-	</ul>
-	</div>
-
-</body>
-</html>
+			</ul>
+		</body>
+	</html>

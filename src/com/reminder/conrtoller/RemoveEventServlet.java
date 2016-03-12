@@ -39,6 +39,10 @@ public class RemoveEventServlet extends HttpServlet {
 			} else {
 				out.write(NOT_FOUND_ERROR);
 			}
+		} catch (NumberFormatException e) {
+
+			out.write(PARAMETER_ERROR);
+
 		} catch (Exception e) {
 
 			out.write(PARAMETER_ERROR + BREAK + e.getMessage());

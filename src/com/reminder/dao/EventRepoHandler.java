@@ -32,7 +32,7 @@ public class EventRepoHandler {
 	}
 
 	public static List<Event> getAll() {
-		List<Event> allEvents = new ArrayList<>();
+		List<Event> allEvents = new ArrayList<Event>();
 		for (Event e : EventRepo.getRepo()) {
 			allEvents.add(e);
 		}
