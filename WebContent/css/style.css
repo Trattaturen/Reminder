@@ -15,12 +15,6 @@ body {
 	width: 150px;
 }
 
-img.screenshot {
-	padding: 5px;
-	border:2px solid #665e25;
-	border-radius:10px;
-}
-
 table.display, table.display td, table.display th{
 	border-collapse:collapse;
 	border:3px solid #665e25;
@@ -28,5 +22,32 @@ table.display, table.display td, table.display th{
 
 table.display td {
 	padding: 20px;
+	
+}
+
+#exceptionscreenshot{
+	background-image: url("../img/exception.gif");
+	width:383px;
+	height:97px;
+	border:2px solid #665e25;
+	border-radius:10px;
+	
+}
+
+#addscreenshot{
+	background-image: url("../img/add.png");
+	width:365px;
+	height:508px;
+	border:2px solid #665e25;
+	border-radius:10px;
+	
+}
+
+#displayscreenshot{
+	background-image: url("../img/display.png");
+	width:570px;
+	height:266px;
+	border:2px solid #665e25;
+	border-radius:10px;
 	
 }
