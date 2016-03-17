@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<link rel="stylesheet" href="css/style.css">
-			<title>Dashboard</title>
-		</head>
-		<body>
-			<a class="links" href="index.html">Home</a>
-			<a class="links" href="add.html">Add</a>
-			<a class="links" href="dashboard.html">Dashboard</a>
-			<hr>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+<title>Reminder Home Page</title>
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="buttons-area">
+				<a class="button" href="index.html">Home</a> 
+				<a class="button" href="add.html">Add</a> 
+				<a class="button active" href="dashboard.html">Dashboard</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+		<div class="content clearfix">
+			<h1>Dashboard</h1>
+
 			<form action="search">
 				<input class="searchline" type="text" name="value"> 
-				<input class="searchbutton" type="submit" value="Search">
+				<input class="button" type="submit" value="Search">
 			</form>
 			<br>
-			<table class="display">
+
+			<table class="add-table">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -30,23 +41,31 @@
 						<td>Java</td>
 						<td>Some description</td>
 						<td>19.06.1999</td>
-						<td><button value="Delete">Delete</button></td>
+						<td><button class="button" value="Delete">Delete</button></td>
 					</tr>
 					<tr>
 						<td>2</td>
 						<td>HTML</td>
 						<td>Some description</td>
 						<td>22.11.2000</td>
-						<td><button value="Delete">Delete</button></td>
+						<td><button class="button" value="Delete">Delete</button></td>
 					</tr>
 					<tr>
 						<td>3</td>
 						<td>CSS</td>
 						<td>Some description</td>
 						<td>11.03.2016</td>
-						<td><button value="Delete">Delete</button></td>
+						<td><button class="button" value="Delete">Delete</button></td>
 					</tr>
 				</tbody>
 			</table>
-		</body>
-	</html>
+
+		</div>
+	</div>
+	<div class="footer"></div>
+
+
+
+
+</body>
+</html>

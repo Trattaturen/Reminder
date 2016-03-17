@@ -1,54 +1,65 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<link rel="stylesheet" href="css/style.css">
-			<title>Add new Event</title>
-		</head>
-		<body>
-			<a class="links" href="index.html">Home</a>
-			<a class="links" href="add.html">Add</a>
-			<a class="links" href="dashboard.html">Dashboard</a>
-			<hr>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+<title>Reminder Home Page</title>
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="buttons-area">
+				<a class="button" href="index.html">Home</a> <a
+					class="button active" href="add.html">Add</a> 
+					<a class="button" href="dashboard.html">Dashboard</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
 
-			<h3>Please fill all following forms</h3>
-
-	
+		<div class="content clearfix">
+			<h1>Fill form to create new Event</h1>
 			<form action="add" method="GET">
-				<table class="display">
+				<table class="add-table">
 					<tbody>
 						<tr>
 							<td>Title</td>
-							<td><input class="inputs" type="text" name="title"></td>
+							<td><input class="add-input" type="text" name="title"></td>
 						</tr>
 						<tr>
 							<td>Description</td>
-							<td><textarea class="inputs" name="description"></textarea></td>
+							<td><textarea class="add-input" name="description"></textarea></td>
 						</tr>
 						<tr>
 							<td>Type</td>
-							<td>
-								<select class="inputs" name="type">
-								<option value="#">Select Event type</option>
-								<option value="togo">To go</option>
-								<option value="tosee">To see</option>
-								<option value="other">Other</option></select>
-							</td>
+							<td><select class="add-input" name="type">
+									<option value="#">Select Event type</option>
+									<option value="togo">To go</option>
+									<option value="tosee">To see</option>
+									<option value="other">Other</option>
+							</select></td>
 						</tr>
 						<tr>
 							<td>Remind</td>
-							<td><input type="checkbox" name="remind"></td>
+							<td><input class="add-input" type="checkbox" name="remind"></td>
 						</tr>
 						<tr>
 							<td>Day</td>
-							<td><input class="inputs" type="date" name="day">
+							<td><input class="add-input" type="date" name="day">
 						</tr>
 						<tr>
 							<td>Time</td>
-							<td><input class="inputs" type="time" name="time"></td>
+							<td><input class="add-input" type="time" name="time"></td>
 						</tr>
 					</tbody>
-				</table><br>
-				<input class="submitbutton" type="submit" value="Add">
+				</table>
+				<br> <input class="button" type="submit" value="Create">
 			</form>
-		</body>
-	</html>
+		</div>
+	</div>
+	<div class="footer"></div>
+
+
+
+
+</body>
+</html>

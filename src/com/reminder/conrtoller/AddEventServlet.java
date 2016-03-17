@@ -23,7 +23,7 @@ public class AddEventServlet extends HttpServlet {
 	private static final String TIME = "time";
 	private static final String CONTENT_TYPE = "text/html";
 	private static final String SUCCESS = "New Event was added succesfully";
-	private static final String PARAMETER_ERROR = "Wrong parameters. Nothing was added!";
+	private static final String PARAMETER_ERROR = "Nothing was added! Wrong parameters:";
 	private static final String DATABASE_ERROR = "Something is wrong with DB. Nothing was added";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,7 @@ public class AddEventServlet extends HttpServlet {
 				out.write(DATABASE_ERROR);
 			}
 		} catch (IllegalArgumentException e) {
-			out.write(PARAMETER_ERROR);
+			out.write(PARAMETER_ERROR + e.getMessage());
 		}
 
 	}
