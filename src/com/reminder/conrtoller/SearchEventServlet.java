@@ -1,7 +1,6 @@
 package com.reminder.conrtoller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.reminder.model.Event;
 import com.reminder.service.EventService;
+import com.reminder.utils.EventUtil;
 
 @WebServlet(name = "SearchEventServlet", urlPatterns = "/search")
 public class SearchEventServlet extends HttpServlet {
@@ -19,35 +19,40 @@ public class SearchEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONTENT_TYPE = "text/html";
-	private static final String NOT_FOUND_ERROR = "Nothing was found!";
-	private static final String BREAK = "<br>";
-	private static final String SUCCESS = "Matching event found";
-	private static final String PARAMETER_ERROR = "Specify at least one parameter!";
 	private static final String PARAMETER_NAME = "value";
+	private static final String MESSAGE_ERROR = "Nothing found";
+	private static final String MESSAGE_SUCCESS = "Found Event matching criteria";
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType(CONTENT_TYPE);
 
-		PrintWriter out = response.getWriter();
+		String events = "";
+		String message;
 
 		String searchValue = request.getParameter(PARAMETER_NAME);
 
 		if (searchValue != null) {
-			List<Event> foundEvents = EventService.find(searchValue);
 
+			List<Event> foundEvents = EventService.find(searchValue);
 			if (foundEvents.isEmpty()) {
-				out.write(NOT_FOUND_ERROR);
+				message = MESSAGE_ERROR;
 			} else {
-				out.write(SUCCESS + BREAK);
-				for (Event event : foundEvents) {
-					out.write(event.toString());
-				}
+				message = MESSAGE_SUCCESS;
 			}
+
+			for (Event event : foundEvents) {
+				events = events + EventUtil.toTable(event);
+				request.setAttribute("events", events);
+
+			}
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 		} else {
-			out.write(PARAMETER_ERROR);
+
 		}
 
 	}
+
 }

@@ -1,16 +1,23 @@
-# Reminder (after Review #1)
-Application to add/remove events
+# Reminder (Task 3 in progress)
 
-# What it does for now:
+## DONE:
 
-- Add Event - /add?title=TITLE&day=DAY&time=TIME  (all parameters must be filled)
+- JSP pages
 
-- Display Events - /display (display all events)
+- Connect ADD to Servlet + add Messages
 
-- Remove Event /remove?id=INT (remove event by it`s ID)
+- Connect Display to servlet + add Messages
 
-- Search Event /search?value=ANYTHING (search for ANYTHING in all Events fields)
+- Connect Search to servlet + add Messages
 
 
-# What to fix:
+## What to fix:
+
+- Connect Remove to servlet
+
+- Change messages colors
+
+- Change messages content
+
+- Try to optimize
 

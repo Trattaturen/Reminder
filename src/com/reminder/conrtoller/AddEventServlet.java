@@ -1,7 +1,6 @@
 package com.reminder.conrtoller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,11 +24,20 @@ public class AddEventServlet extends HttpServlet {
 	private static final String SUCCESS = "New Event was added succesfully";
 	private static final String PARAMETER_ERROR = "Nothing was added! Wrong parameters:";
 	private static final String DATABASE_ERROR = "Something is wrong with DB. Nothing was added";
+	private static final String TYPE_ERROR = "error";
+	private static final String TYPE_SUCCESS = "success";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		PrintWriter out = response.getWriter();
+		response.sendRedirect("add.jsp");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String message;
+		String type;
 
 		response.setContentType(CONTENT_TYPE);
 
@@ -39,14 +47,19 @@ public class AddEventServlet extends HttpServlet {
 					request.getParameter(TIME));
 
 			if (EventService.add(newEvent)) {
-				out.write(SUCCESS);
+				message = SUCCESS;
+				type = TYPE_SUCCESS;
 			} else {
-				out.write(DATABASE_ERROR);
+				message = DATABASE_ERROR;
+				type = TYPE_ERROR;
 			}
 		} catch (IllegalArgumentException e) {
-			out.write(PARAMETER_ERROR + e.getMessage());
+			message = PARAMETER_ERROR + e.getMessage();
+			type = TYPE_ERROR;
 		}
-
+		request.setAttribute("message", message);
+		request.setAttribute("type", type);
+		request.getRequestDispatcher("add.jsp").forward(request, response);
 	}
 
 }

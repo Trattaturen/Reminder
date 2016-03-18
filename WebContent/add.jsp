@@ -8,17 +8,25 @@
 	<div class="header">
 		<div class="container">
 			<div class="buttons-area">
-				<a class="button" href="index.html">Home</a> <a
-					class="button active" href="add.html">Add</a> 
-					<a class="button" href="dashboard.html">Dashboard</a>
+				<a class="button" href="home">Home</a> 
+				<a class="button active" href="add">Add</a> 
+				<a class="button" href="display">Dashboard</a>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 
 		<div class="content clearfix">
+
+			<%
+				if (request.getAttribute("message") != null) {
+			%>
+			<p class="<%=request.getAttribute("type")%>"><%=request.getAttribute("message")%></p>
+			<%
+				}
+			%>
 			<h1>Fill form to create new Event</h1>
-			<form action="add" method="GET">
+			<form action="add" method="POST">
 				<table class="add-table">
 					<tbody>
 						<tr>

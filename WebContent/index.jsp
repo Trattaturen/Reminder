@@ -8,9 +8,9 @@
 	<div class="header">
 		<div class="container">
 			<div class="buttons-area">
-				<a class="button active" href="index.html">Home</a> <a
-					class="button" href="add.html">Add</a> 
-					<a class="button" href="dashboard.html">Dashboard</a>
+				<a class="button active" href="home">Home</a> 
+				<a class="button" href="add">Add</a> 
+				<a class="button" href="display">Dashboard</a>
 			</div>
 		</div>
 	</div>
@@ -21,7 +21,8 @@
 			<h3>Here are some features available at the moment:</h3>
 			<ul class="info">
 				<li>To ADD new Event:
-					<div class="image-add"></div></li>
+					<div class="image-add"></div>
+				</li>
 				<li>To Display/Search/Remove Events:
 
 					<div class="image-display"></div>

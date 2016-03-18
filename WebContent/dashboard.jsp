@@ -8,9 +8,8 @@
 	<div class="header">
 		<div class="container">
 			<div class="buttons-area">
-				<a class="button" href="index.html">Home</a> 
-				<a class="button" href="add.html">Add</a> 
-				<a class="button active" href="dashboard.html">Dashboard</a>
+				<a class="button" href="home">Home</a> <a class="button" href="add">Add</a>
+				<a class="button active" href="display">Dashboard</a>
 			</div>
 		</div>
 	</div>
@@ -19,12 +18,15 @@
 		<div class="content clearfix">
 			<h1>Dashboard</h1>
 
-			<form action="search">
+			<form action="search" method="POST">
 				<input class="searchline" type="text" name="value"> 
 				<input class="button" type="submit" value="Search">
 			</form>
 			<br>
-
+			<p><%=request.getAttribute("message")%></p>
+			<%
+				if (request.getAttribute("events")!=null) {
+			%>
 			<table class="add-table">
 				<thead>
 					<tr>
@@ -36,30 +38,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Java</td>
-						<td>Some description</td>
-						<td>19.06.1999</td>
-						<td><button class="button" value="Delete">Delete</button></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>HTML</td>
-						<td>Some description</td>
-						<td>22.11.2000</td>
-						<td><button class="button" value="Delete">Delete</button></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>CSS</td>
-						<td>Some description</td>
-						<td>11.03.2016</td>
-						<td><button class="button" value="Delete">Delete</button></td>
-					</tr>
+					<%=request.getAttribute("events")%>
 				</tbody>
 			</table>
 
+			<%
+				}
+			%>
 		</div>
 	</div>
 	<div class="footer"></div>

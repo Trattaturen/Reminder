@@ -42,7 +42,9 @@ public class EventRepoHandler {
 	public static List<Event> findByValue(String value) {
 		List<Event> found = new ArrayList<Event>();
 		for (Event event : EventRepo.getRepo()) {
-			if (event.getTitle().equals(value) || event.getDay().equals(value) || event.getTime().equals(value)) {
+			if (event.getTitle().toLowerCase().equals(value.toLowerCase()) || 
+					event.getDay().toLowerCase().equals(value.toLowerCase()) || 
+						event.getTime().equals(value)) {
 				found.add(event);
 			}
 		}
