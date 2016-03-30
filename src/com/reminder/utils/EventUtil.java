@@ -33,16 +33,4 @@ public class EventUtil {
 
 	}
 
-	public static String toTable(Event event) {
-
-		return "<tr>"
-				+ "<td>" + event.getId() + "</td>" + 
-				"<td>" + event.getTitle() + "</td>"+ 
-				"<td>Temporary description</td>" + 
-				"<td>" + event.getDay() + "</td>" + 
-				"<td>" + event.getTime() + "</td>" + 
-				"<td><button class='button' value='Delete'>Delete</button></td>" + 
-				"</tr>";
-
-	}
 }

@@ -10,14 +10,15 @@
 
 - Connect Search to servlet + add Messages
 
-
-## What to fix:
-
 - Connect Remove to servlet
 
 - Change messages colors
 
 - Change messages content
 
-- Try to optimize
+- No scriplets (JSTL + EL only)
 
+
+## What to fix:
+
+- Get review

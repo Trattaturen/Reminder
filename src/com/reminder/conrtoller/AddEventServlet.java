@@ -21,8 +21,8 @@ public class AddEventServlet extends HttpServlet {
 	private static final String DAY = "day";
 	private static final String TIME = "time";
 	private static final String CONTENT_TYPE = "text/html";
-	private static final String SUCCESS = "New Event was added succesfully";
-	private static final String PARAMETER_ERROR = "Nothing was added! Wrong parameters:";
+	private static final String SUCCESS = "Success! Product was added.";
+	private static final String PARAMETER_ERROR = "Error! Product can`t be added. Wrong parameters:";
 	private static final String DATABASE_ERROR = "Something is wrong with DB. Nothing was added";
 	private static final String TYPE_ERROR = "error";
 	private static final String TYPE_SUCCESS = "success";

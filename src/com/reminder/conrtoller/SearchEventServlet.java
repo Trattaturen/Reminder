@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.reminder.model.Event;
 import com.reminder.service.EventService;
-import com.reminder.utils.EventUtil;
 
 @WebServlet(name = "SearchEventServlet", urlPatterns = "/search")
 public class SearchEventServlet extends HttpServlet {
@@ -20,39 +19,42 @@ public class SearchEventServlet extends HttpServlet {
 
 	private static final String CONTENT_TYPE = "text/html";
 	private static final String PARAMETER_NAME = "value";
-	private static final String MESSAGE_ERROR = "Nothing found";
-	private static final String MESSAGE_SUCCESS = "Found Event matching criteria";
+	private static final String MESSAGE_NOT_FOUND = "Event was not found";
+	private static final String MESSAGE_PARAMETER_ERROR = "Wrong search parameters";
+	private static final String MESSAGE_SUCCESS = "List of found Events";
+	private static final String TYPE_ERROR = "error";
+	private static final String TYPE_SUCCESS = "success";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType(CONTENT_TYPE);
 
-		String events = "";
 		String message;
+		String type;
 
 		String searchValue = request.getParameter(PARAMETER_NAME);
 
-		if (searchValue != null) {
+		if (searchValue != null && searchValue != "") {
 
 			List<Event> foundEvents = EventService.find(searchValue);
 			if (foundEvents.isEmpty()) {
-				message = MESSAGE_ERROR;
+				message = MESSAGE_NOT_FOUND;
+				type = TYPE_ERROR;
+
 			} else {
 				message = MESSAGE_SUCCESS;
+				type = TYPE_SUCCESS;
+				request.setAttribute("events", foundEvents);
 			}
 
-			for (Event event : foundEvents) {
-				events = events + EventUtil.toTable(event);
-				request.setAttribute("events", events);
-
-			}
-			request.setAttribute("message", message);
-			request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 		} else {
-
+			message = MESSAGE_PARAMETER_ERROR;
+			type = TYPE_ERROR;
 		}
-
+		request.setAttribute("type", type);
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 	}
 
 }

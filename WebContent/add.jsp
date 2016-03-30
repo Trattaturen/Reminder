@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/style.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>Reminder Home Page</title>
 </head>
 <body>
@@ -18,14 +19,12 @@
 
 		<div class="content clearfix">
 
-			<%
-				if (request.getAttribute("message") != null) {
-			%>
-			<p class="<%=request.getAttribute("type")%>"><%=request.getAttribute("message")%></p>
-			<%
-				}
-			%>
+			<c:if test="${not empty message}">
+				<p class="${type}">${message}</p>
+			</c:if>
+			
 			<h1>Fill form to create new Event</h1>
+			
 			<form action="add" method="POST">
 				<table class="add-table">
 					<tbody>
