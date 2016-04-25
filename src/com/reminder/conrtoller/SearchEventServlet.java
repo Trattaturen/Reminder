@@ -24,6 +24,10 @@ public class SearchEventServlet extends HttpServlet {
 	private static final String MESSAGE_SUCCESS = "List of found Events";
 	private static final String TYPE_ERROR = "error";
 	private static final String TYPE_SUCCESS = "success";
+	private static final String MESSAGE = "message";
+	private static final String TYPE = "type";
+	private static final String REDIRECT_TO = "dashboard.jsp";
+	private static final String EVENTS = "events";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -45,16 +49,16 @@ public class SearchEventServlet extends HttpServlet {
 			} else {
 				message = MESSAGE_SUCCESS;
 				type = TYPE_SUCCESS;
-				request.setAttribute("events", foundEvents);
+				request.setAttribute(EVENTS, foundEvents);
 			}
 
 		} else {
 			message = MESSAGE_PARAMETER_ERROR;
 			type = TYPE_ERROR;
 		}
-		request.setAttribute("type", type);
-		request.setAttribute("message", message);
-		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+		request.setAttribute(TYPE, type);
+		request.setAttribute(MESSAGE, message);
+		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}
 
 }

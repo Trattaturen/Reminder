@@ -23,6 +23,10 @@ public class DisplayEventServlet extends HttpServlet {
 	private static final String MESSAGE_SUCCESS = "List of all Events:";
 	private static final String TYPE_ERROR = "error";
 	private static final String TYPE_SUCCESS = "success";
+	private static final String MESSAGE = "message";
+	private static final String TYPE = "type";
+	private static final String REDIRECT_TO = "dashboard.jsp";
+	private static final String EVENTS = "events";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,15 +43,15 @@ public class DisplayEventServlet extends HttpServlet {
 			}
 			message = MESSAGE_SUCCESS;
 			type = TYPE_SUCCESS;
-			request.setAttribute("events", allEvents);
+			request.setAttribute(EVENTS, allEvents);
 		} else {
 			message = MESSAGE_ERROR;
 			type = TYPE_ERROR;
 
 		}
-		request.setAttribute("type", type);
-		request.setAttribute("message", message);
-		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+		request.setAttribute(TYPE, type);
+		request.setAttribute(MESSAGE, message);
+		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

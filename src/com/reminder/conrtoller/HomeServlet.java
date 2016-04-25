@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 public class HomeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private static final String REDIRECT_TO = "index.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("index.jsp");
+		response.sendRedirect(REDIRECT_TO);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

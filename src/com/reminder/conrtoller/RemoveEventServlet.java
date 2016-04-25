@@ -23,6 +23,8 @@ public class RemoveEventServlet extends HttpServlet {
 	private static final String TYPE_SUCCESS = "success";
 	private static final String ID = "id";
 	private static final String BREAK = "<br>";
+	private static final String REMOVE_MESSAGE = "removeMessage";
+	private static final String REMOVE_TYPE = "removeType";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,8 +55,8 @@ public class RemoveEventServlet extends HttpServlet {
 			type = TYPE_ERROR;
 
 		}
-		request.setAttribute("removeMessage", message);
-		request.setAttribute("removeType", type);
+		request.setAttribute(REMOVE_MESSAGE, message);
+		request.setAttribute(REMOVE_TYPE, type);
 		request.getRequestDispatcher("display").forward(request, response);
 
 	}
