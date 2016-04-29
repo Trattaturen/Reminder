@@ -1,24 +1,16 @@
-# Reminder (Task 3 in progress)
+# Reminder (Task 5 in progress)
 
 ## DONE:
 
-- JSP pages
+- Implementing logging by means of log4j
 
-- Connect ADD to Servlet + add Messages
-
-- Connect Display to servlet + add Messages
-
-- Connect Search to servlet + add Messages
-
-- Connect Remove to servlet
-
-- Change messages colors
-
-- Change messages content
-
-- No scriplets (JSTL + EL only)
+- Logging levels:
+	Servlets: INFO, WARNING
+	Service: DEBUG
 
 
 ## What to fix:
 
-- Get review
+- Improve logging levels 
+- Improve "readability"
+- Change log file destination (bin/log_file.log)
