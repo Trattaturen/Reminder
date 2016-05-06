@@ -1,4 +1,4 @@
-package com.reminder.conrtoller;
+package com.reminder.controller;
 
 import java.io.IOException;
 
@@ -29,10 +29,11 @@ public class RemoveEventServlet extends HttpServlet {
 	private static final String BREAK = "<br>";
 	private static final String REMOVE_MESSAGE = "removeMessage";
 	private static final String REMOVE_TYPE = "removeType";
+	private static final String REDIRECT_TO = "display";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LOG.info("POST request");
+		LOG.debug("POST request");
 		response.setContentType(CONTENT_TYPE);
 		String message;
 		String type;
@@ -40,13 +41,13 @@ public class RemoveEventServlet extends HttpServlet {
 		try {
 
 			int toRemoveId = Integer.parseInt(request.getParameter(ID));
-			LOG.info("Parsing given parameter to integer");
+			LOG.debug("Parsing given parameter to integer");
 			if (EventService.remove(toRemoveId)) {
 				LOG.info(SUCCESS);
 				message = SUCCESS;
 				type = TYPE_SUCCESS;
 			} else {
-				LOG.info(NOT_FOUND_ERROR);
+				LOG.debug(NOT_FOUND_ERROR);
 				message = NOT_FOUND_ERROR;
 				type = TYPE_ERROR;
 			}
@@ -61,9 +62,10 @@ public class RemoveEventServlet extends HttpServlet {
 			type = TYPE_ERROR;
 
 		}
+		LOG.debug("Forwarding request to " + REDIRECT_TO);
 		request.setAttribute(REMOVE_MESSAGE, message);
 		request.setAttribute(REMOVE_TYPE, type);
-		request.getRequestDispatcher("display").forward(request, response);
+		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 
 	}
 }

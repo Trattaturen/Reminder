@@ -1,4 +1,4 @@
-package com.reminder.conrtoller;
+package com.reminder.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class DisplayEventServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		LOG.info("GET request");
+		LOG.debug("GET request");
 
 		List<Event> allEvents = new ArrayList<>();
 		String message;
@@ -43,29 +43,29 @@ public class DisplayEventServlet extends HttpServlet {
 		response.setContentType(CONTENT_TYPE);
 
 		if (!EventService.getAll().isEmpty()) {
-			LOG.info("Getting all Events from DB");
+			LOG.debug("Getting all Events from DB");
 			for (Event event : EventService.getAll()) {
 				allEvents.add(event);
-				
+
 			}
 			message = MESSAGE_SUCCESS;
 			type = TYPE_SUCCESS;
 			request.setAttribute(EVENTS, allEvents);
 		} else {
-			LOG.info("No events in DB");
+			LOG.debug("No events in DB");
 			message = MESSAGE_ERROR;
 			type = TYPE_ERROR;
 
 		}
 		request.setAttribute(TYPE, type);
 		request.setAttribute(MESSAGE, message);
-		LOG.info("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to " + REDIRECT_TO);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
-		LOG.info("POST method forwarded to doGET method");
+		LOG.debug("POST request forwarded to doGET method");
 	}
 }

@@ -1,16 +1,26 @@
-# Reminder (Task 5 in progress)
+# Reminder (Task 5 in progress REVIEW #1)
 
 ## DONE:
 
-- Implementing logging by means of log4j
+- Created "docs" folder with instructions on configuring "Maven to Tomcat" plugin 
 
-- Logging levels:
-	Servlets: INFO, WARNING
-	Service: DEBUG
+- Created profile in POM.xml:
 
+	- Student (default) - deploying to "http://localhost:8080/manager/text"
+	- Mentor (star with "-P Mentor" flag) - deploying to "http://localhost:8181/manager/text" 
+
+- Changed LOG_FILE name to reminder.log
+
+- Moved reminder.log to ${catalina.base}/logs/reminder.log
+
+- Added Method name to logging information
+
+- Changed logging layout pattern
+
+- Improved logging levels
 
 ## What to fix:
 
-- Improve logging levels 
-- Improve "readability"
-- Change log file destination (bin/log_file.log)
+- Move log4j.properties file
+
+- Get review of logging levels

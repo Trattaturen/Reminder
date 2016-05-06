@@ -1,4 +1,4 @@
-package com.reminder.conrtoller;
+package com.reminder.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,7 +35,7 @@ public class SearchEventServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LOG.info("POST request");
+		LOG.debug("POST request");
 
 		response.setContentType(CONTENT_TYPE);
 
@@ -43,17 +43,17 @@ public class SearchEventServlet extends HttpServlet {
 		String type;
 
 		String searchValue = request.getParameter(PARAMETER_NAME);
-		LOG.info("Validating search parameters");
+		LOG.debug("Validating search parameters");
 		if (searchValue != null && searchValue != "") {
-			LOG.info("Search parameters are OK");
+			LOG.debug("Search parameters are OK");
 			List<Event> foundEvents = EventService.find(searchValue);
 			if (foundEvents.isEmpty()) {
-				LOG.info(MESSAGE_NOT_FOUND);
+				LOG.debug(MESSAGE_NOT_FOUND);
 				message = MESSAGE_NOT_FOUND;
 				type = TYPE_ERROR;
 
 			} else {
-				LOG.info("Found some event(s)");
+				LOG.debug("Found some event(s)");
 				message = MESSAGE_SUCCESS;
 				type = TYPE_SUCCESS;
 				request.setAttribute(EVENTS, foundEvents);
@@ -66,7 +66,7 @@ public class SearchEventServlet extends HttpServlet {
 		}
 		request.setAttribute(TYPE, type);
 		request.setAttribute(MESSAGE, message);
-		LOG.info("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to " + REDIRECT_TO);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}
 

@@ -1,4 +1,4 @@
-package com.reminder.conrtoller;
+package com.reminder.controller;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		LOG.info("GET request redirected to " + REDIRECT_TO);
+		LOG.debug("GET request redirected to " + REDIRECT_TO);
 		response.sendRedirect(REDIRECT_TO);
 	}
 

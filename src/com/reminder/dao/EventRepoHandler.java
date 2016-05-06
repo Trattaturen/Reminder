@@ -15,7 +15,7 @@ public class EventRepoHandler {
 
 		try {
 			EventRepo.getRepo().add(event);
-			LOG.debug("Event added to DB");
+			LOG.info("Event added to DB");
 			return true;
 		} catch (Exception e) {
 			LOG.warn("Problems with adding event" + e);
@@ -27,14 +27,14 @@ public class EventRepoHandler {
 	public static boolean removeById(int id) {
 
 		for (Event event : EventRepo.getRepo()) {
-			LOG.debug("Searching for Event to remove");
+			LOG.info("Searching for Event to remove");
 			if (event.getId() == id) {
 				EventRepo.getRepo().remove(event);
-				LOG.debug("Succesfully removed Event");
+				LOG.info("Succesfully removed Event");
 				return true;
 			}
 		}
-		LOG.debug("Event to remove not found");
+		LOG.info("Event to remove not found");
 		return false;
 
 	}
@@ -49,7 +49,7 @@ public class EventRepoHandler {
 	}
 
 	public static List<Event> findByValue(String value) {
-		LOG.debug("Searching for Event");
+		LOG.info("Searching for Event");
 		List<Event> found = new ArrayList<Event>();
 		for (Event event : EventRepo.getRepo()) {
 			if (event.getTitle().toLowerCase().equals(value.toLowerCase())
@@ -57,7 +57,7 @@ public class EventRepoHandler {
 				found.add(event);
 			}
 		}
-		LOG.debug("Found " + found.size() + " matching events");
+		LOG.info("Found " + found.size() + " matching events");
 		return found;
 	}
 }

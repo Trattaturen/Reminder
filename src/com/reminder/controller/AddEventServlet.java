@@ -1,4 +1,8 @@
-package com.reminder.conrtoller;
+package com.reminder.controller;
+
+import com.reminder.model.Event;
+import com.reminder.service.EventService;
+import com.reminder.utils.EventUtil;
 
 import java.io.IOException;
 
@@ -8,10 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
-
-import com.reminder.model.Event;
-import com.reminder.service.EventService;
-import com.reminder.utils.EventUtil;
 
 @WebServlet(name = "AddEventServlet", urlPatterns = "/add")
 public class AddEventServlet extends HttpServlet {
@@ -38,13 +38,14 @@ public class AddEventServlet extends HttpServlet {
 
 		response.sendRedirect(REDIRECT_TO);
 
-		LOG.info("GET request redirected to " + REDIRECT_TO);
+		LOG.debug("GET request");
+		LOG.debug("GET request redirected to " + REDIRECT_TO);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		LOG.info("POST request");
+		LOG.debug("POST request");
 
 		String message;
 		String type;
@@ -56,7 +57,7 @@ public class AddEventServlet extends HttpServlet {
 					request.getParameter(TIME));
 
 			if (EventService.add(newEvent)) {
-				LOG.info(SUCCESS);
+				LOG.debug(SUCCESS);
 				message = SUCCESS;
 				type = TYPE_SUCCESS;
 			} else {
@@ -65,12 +66,12 @@ public class AddEventServlet extends HttpServlet {
 				type = TYPE_ERROR;
 			}
 		} catch (IllegalArgumentException e) {
-			LOG.warn(PARAMETER_ERROR + e);
+			LOG.error(PARAMETER_ERROR + e);
 			message = PARAMETER_ERROR + e.getMessage();
 			type = TYPE_ERROR;
 
 		}
-		LOG.info("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to " + REDIRECT_TO);
 		request.setAttribute(MESSAGE, message);
 		request.setAttribute(TYPE, type);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);

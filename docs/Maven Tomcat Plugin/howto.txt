@@ -1,0 +1,38 @@
+To set Maven Tomcat Plugin follow you can choose two different ways:
+
+*********************************************************************************
+"My tomcat_users.xml and maven to tomcat settings.xml are totally default" WAY:
+*********************************************************************************
+	1. Copy provided tomcat_users.xml to your {CATALINA_BASE}\conf 
+
+	2. Copy provided settings.xml to your {M2_HOME} 
+	
+	3. Build + Deploy project with:
+			
+				~\mvn tomcat7:deploy
+
+*********************************************************************************
+"I have already customized my tomcat_users.xml and maven to tomcat settings.xml" WAY:
+*********************************************************************************
+	1. 	In your {CATALINA_BASE}\conf\tomcat_users.xml
+		inside <tomcat-users></tomcat-users> tag
+		Add following parameters:
+		
+				<role rolename="manager-script"/>
+		  		<user username="user" password="123456" roles="manager-script"/>
+	  		
+	2. In your {M2_HOME}\settings.xml add following parameters:
+			
+				<servers>
+					<server>
+						<id>local-tomcat-7</id>
+						<username>user</username>
+						<password>123456</password>
+					</server>
+		 		</servers>
+		 		
+	3. Build + Deploy project with:
+			
+				~\mvn tomcat7:deploy
+		
+*********************************************************************************			
