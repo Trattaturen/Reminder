@@ -14,6 +14,9 @@
 				<a class="button" href="add">Add</a>
 				<a class="button active" href="display">Dashboard</a>
 			</div>
+			<div class = "registration-area">
+				<a class="registration-link" href="register">Sign up</a>
+			</div>
 		</div>
 	</div>
 	<div class="container">

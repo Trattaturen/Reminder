@@ -9,10 +9,10 @@ public class EventUtil {
 	public static final Logger LOG = Logger.getLogger(EventUtil.class);
 
 	public static Event createEvent(String title, String day, String time) {
-		LOG.info("Checking parameters:" + title + day + time);
+		LOG.debug("Checking parameters:" + title + day + time);
 		String invalidParameters = checkParameters(title, day, time);
 		if (invalidParameters.isEmpty()) {
-			LOG.info("All parameters correct. Returning new Event");
+			LOG.debug("All parameters correct. Returning new Event");
 			return new Event(title, day, time);
 		}
 		LOG.warn("Incorrect parameters: " + invalidParameters);

@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/style.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>Reminder Home Page</title>
 </head>
 <body>
@@ -12,10 +13,16 @@
 				<a class="button" href="add">Add</a> 
 				<a class="button" href="display">Dashboard</a>
 			</div>
+			<div class = "registration-area">
+				<a class="registration-link" href="register">Sign up</a>
+			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="content clearfix">
+		<c:if test="${not empty message}">
+				<p class="${type}">${message}</p>
+			</c:if>
 
 			<h1>Welcome to Reminder project HomePage</h1>
 			<h3>Here are some features available at the moment:</h3>
