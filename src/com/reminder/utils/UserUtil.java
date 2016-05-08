@@ -10,8 +10,8 @@ import com.reminder.model.User;
 public class UserUtil {
 
 	public static final Logger LOG = Logger.getLogger(UserUtil.class);
-	private static final String MAIL_PATTERN = "^[a-zA-Z0-9\\.\\_]{4,}+@+[a-zA-Z]{1}+[a-zA-Z0-9]{0,}\\.+[a-zA-Z]{2,3}$";
-	private static final String PASS_PATTERN = "^.{5,25}$";
+	private static final String MAIL_PATTERN = "^[a-zA-Z0-9\\.\\_]{4,31}+@+[a-zA-Z]{1}+[a-zA-Z0-9]{0,}\\.+[a-zA-Z]{2,3}$";
+	private static final String PASS_PATTERN = "^.{5,3}$";
 
 	public static User createUser(String mail, String password, String confirmedPassword) {
 
