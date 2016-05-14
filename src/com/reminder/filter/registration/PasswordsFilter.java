@@ -53,7 +53,7 @@ public class PasswordsFilter implements Filter {
 			Pattern r = Pattern.compile(PASS_PATTERN);
 			Matcher m = r.matcher(password);
 
-			if (!m.find()) {
+			if (!m.matches()) {
 
 				LOG.warn("Password is incorrect");
 				request.setAttribute(PARAM_PASS_ERROR, WRONG_PASSWORD);

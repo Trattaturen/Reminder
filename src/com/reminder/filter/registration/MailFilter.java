@@ -48,7 +48,7 @@ public class MailFilter implements Filter {
 			Pattern r = Pattern.compile(MAIL_PATTERN);
 			Matcher m = r.matcher(mail);
 
-			if (!m.find()) {
+			if (!m.matches()) {
 
 				LOG.warn("E-mail is incorrect");
 				request.setAttribute(PARAM_MAIL_ERROR, WRONG_EMAIL);
