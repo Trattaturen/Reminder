@@ -27,27 +27,24 @@
 					<tbody>
 						<tr>
 							<td>E-mail</td>
-							<td><input type="text" name="mail"> 
-								<c:if test="${not empty mail_error}">
-									<p class="${type}">${mail_error}</p>
-								</c:if>
-							</td>
+							<td><input type="text" name="mail"></td>
+							<c:if test="${not empty mail_error}">
+								<td class="error" style="border: 0;">${mail_error}</td>
+							</c:if>
 						</tr>
 						<tr>
 							<td>Password</td>
-							<td><input type="password" name="password">
-								<c:if test="${not empty pass_error}">
-									<p class="${type}">${pass_error}</p>
-								</c:if>
-							</td>
+							<td><input type="password" name="password"> <c:if
+									test="${not empty pass_error}">
+									<td class="error" style="border: 0;">${pass_error}</td>
+								</c:if></td>
 						</tr>
 						<tr>
 							<td>Confirm password</td>
 							<td><input type="password" name="confirmed-password">
 								<c:if test="${not empty pass_mismatch}">
-									<p class="${type}">${pass_mismatch}</p>
-								</c:if>
-							</td>
+									<td class="error" style="border: 0;">${pass_mismatch}</td>
+								</c:if></td>
 						</tr>
 					</tbody>
 				</table>

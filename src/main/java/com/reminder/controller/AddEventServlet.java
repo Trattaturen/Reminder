@@ -11,14 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @WebServlet(name = "AddEventServlet", urlPatterns = "/add")
 public class AddEventServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final Logger LOG = Logger.getLogger(AddEventServlet.class);
+	public static final Logger LOG = LogManager.getLogger(AddEventServlet.class);
 
 	private static final String TITLE = "title";
 	private static final String DAY = "day";
@@ -39,7 +40,8 @@ public class AddEventServlet extends HttpServlet {
 		response.sendRedirect(REDIRECT_TO);
 
 		LOG.debug("GET request");
-		LOG.debug("GET request redirected to " + REDIRECT_TO);
+		LOG.debug("GET request redirected to {}", REDIRECT_TO);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -57,21 +59,21 @@ public class AddEventServlet extends HttpServlet {
 					request.getParameter(TIME));
 
 			if (EventService.add(newEvent)) {
-				LOG.debug(SUCCESS);
+				LOG.debug("Event added");
 				message = SUCCESS;
 				type = TYPE_SUCCESS;
 			} else {
-				LOG.warn(DATABASE_ERROR);
+				LOG.warn("Could not add event");
 				message = DATABASE_ERROR;
 				type = TYPE_ERROR;
 			}
 		} catch (IllegalArgumentException e) {
-			LOG.error(PARAMETER_ERROR + e);
+			LOG.error("Wrong Event parameters {}", e);
 			message = PARAMETER_ERROR + e.getMessage();
 			type = TYPE_ERROR;
 
 		}
-		LOG.debug("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to {}", REDIRECT_TO);
 		request.setAttribute(MESSAGE, message);
 		request.setAttribute(TYPE, type);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);

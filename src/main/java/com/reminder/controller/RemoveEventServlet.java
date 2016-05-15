@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.reminder.service.EventService;
 
@@ -17,7 +18,7 @@ public class RemoveEventServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final Logger LOG = Logger.getLogger(RemoveEventServlet.class);
+	public static final Logger LOG = LogManager.getLogger(RemoveEventServlet.class);
 
 	private static final String CONTENT_TYPE = "text/html";
 	private static final String PARAMETER_ERROR = "Wrong parameters";
@@ -43,26 +44,26 @@ public class RemoveEventServlet extends HttpServlet {
 			int toRemoveId = Integer.parseInt(request.getParameter(ID));
 			LOG.debug("Parsing given parameter to integer");
 			if (EventService.remove(toRemoveId)) {
-				LOG.info(SUCCESS);
+				LOG.info("Deleted Event");
 				message = SUCCESS;
 				type = TYPE_SUCCESS;
 			} else {
-				LOG.debug(NOT_FOUND_ERROR);
+				LOG.debug("Event not found");
 				message = NOT_FOUND_ERROR;
 				type = TYPE_ERROR;
 			}
 		} catch (NumberFormatException e) {
-			LOG.warn(PARAMETER_ERROR + e);
+			LOG.warn("Wrong parameters", e);
 			message = PARAMETER_ERROR;
 			type = TYPE_ERROR;
 
 		} catch (Exception e) {
-			LOG.error(PARAMETER_ERROR + e);
+			LOG.error("Wrong parameters {}",  e);
 			message = (PARAMETER_ERROR + BREAK + e.getMessage());
 			type = TYPE_ERROR;
 
 		}
-		LOG.debug("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to {}", REDIRECT_TO);
 		request.setAttribute(REMOVE_MESSAGE, message);
 		request.setAttribute(REMOVE_TYPE, type);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);

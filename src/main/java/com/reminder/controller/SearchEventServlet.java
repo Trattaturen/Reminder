@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.reminder.model.Event;
 import com.reminder.service.EventService;
@@ -19,7 +20,7 @@ public class SearchEventServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final Logger LOG = Logger.getLogger(SearchEventServlet.class);
+	public static final Logger LOG = LogManager.getLogger(SearchEventServlet.class);
 
 	private static final String CONTENT_TYPE = "text/html";
 	private static final String PARAMETER_NAME = "value";
@@ -48,7 +49,7 @@ public class SearchEventServlet extends HttpServlet {
 			LOG.debug("Search parameters are OK");
 			List<Event> foundEvents = EventService.find(searchValue);
 			if (foundEvents.isEmpty()) {
-				LOG.debug(MESSAGE_NOT_FOUND);
+				LOG.debug("Event not found");
 				message = MESSAGE_NOT_FOUND;
 				type = TYPE_ERROR;
 
@@ -60,13 +61,13 @@ public class SearchEventServlet extends HttpServlet {
 			}
 
 		} else {
-			LOG.warn(MESSAGE_PARAMETER_ERROR);
+			LOG.warn("Wrong search parameters");
 			message = MESSAGE_PARAMETER_ERROR;
 			type = TYPE_ERROR;
 		}
 		request.setAttribute(TYPE, type);
 		request.setAttribute(MESSAGE, message);
-		LOG.debug("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to {}", REDIRECT_TO);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}
 

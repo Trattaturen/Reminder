@@ -13,12 +13,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @WebFilter(filterName = "MailFilter", servletNames = "RegistrationServlet")
 public class MailFilter implements Filter {
 
-	public static final Logger LOG = Logger.getLogger(MailFilter.class);
+	public static final Logger LOG = LogManager.getLogger(MailFilter.class);
 
 	private static final String PARAM_MAIL = "mail";
 	private static final String PARAM_MAIL_ERROR = "mail_error";
@@ -53,7 +54,7 @@ public class MailFilter implements Filter {
 				LOG.warn("E-mail is incorrect");
 				request.setAttribute(PARAM_MAIL_ERROR, WRONG_EMAIL);
 				request.setAttribute(TYPE, TYPE_ERROR);
-				LOG.debug("Forwarding back to " + REDIRECT_TO_REG);
+				LOG.debug("Forwarding back to {}", REDIRECT_TO_REG);
 				request.getRequestDispatcher(REDIRECT_TO_REG).forward(request, response);
 
 			} else {

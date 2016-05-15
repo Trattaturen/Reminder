@@ -12,6 +12,16 @@
 
 - Moved log4j.properties file to proper position :)
 
-## What to fix:
+## Fixed (Review #2):
+
+- Changed project structure
+
+- Migrated to log4j2.5
+
+- Changed logging information
+
+- Changed registration.jsp (error messages moved to third column of table)
+
+
 
 

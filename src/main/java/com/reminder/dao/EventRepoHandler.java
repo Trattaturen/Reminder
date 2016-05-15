@@ -3,13 +3,14 @@ package com.reminder.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.reminder.model.Event;
 
 public class EventRepoHandler {
 
-	public static final Logger LOG = Logger.getLogger(EventRepoHandler.class);
+	public static final Logger LOG = LogManager.getLogger(EventRepoHandler.class.getName());
 
 	public static boolean add(Event event) {
 
@@ -57,7 +58,7 @@ public class EventRepoHandler {
 				found.add(event);
 			}
 		}
-		LOG.info("Found " + found.size() + " matching events");
+		LOG.info("Found {} matching events", found.size());
 		return found;
 	}
 }

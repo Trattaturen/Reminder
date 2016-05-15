@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.reminder.model.Event;
 import com.reminder.service.EventService;
@@ -20,7 +21,7 @@ public class DisplayEventServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final Logger LOG = Logger.getLogger(DisplayEventServlet.class);
+	public static final Logger LOG = LogManager.getLogger(DisplayEventServlet.class);
 
 	private static final String CONTENT_TYPE = "text/html";
 	private static final String MESSAGE_ERROR = "There are no Events in DB.";
@@ -59,7 +60,7 @@ public class DisplayEventServlet extends HttpServlet {
 		}
 		request.setAttribute(TYPE, type);
 		request.setAttribute(MESSAGE, message);
-		LOG.debug("Forwarding request to " + REDIRECT_TO);
+		LOG.debug("Forwarding request to {}", REDIRECT_TO);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}
 

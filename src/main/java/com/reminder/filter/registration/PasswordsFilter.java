@@ -13,19 +13,20 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @WebFilter(filterName = "PasswordsFilter", servletNames = "RegistrationServlet")
 public class PasswordsFilter implements Filter {
 
-	public static final Logger LOG = Logger.getLogger(PasswordsFilter.class);
+	public static final Logger LOG = LogManager.getLogger(PasswordsFilter.class);
 
 	private static final String TYPE_ERROR = "error";
 	private static final String TYPE = "type";
 	private static final String PARAM_PASS_ERROR = "pass_error";
 	private static final String PARAM_PASS_MISSMATCH = "pass_mismatch";
 	private static final String WRONG_PASSWORD = "Wrong password!";
-	private static final String WRONG_PASSWORD_MISMATCH = "Passwords do not match!";
+	private static final String WRONG_PASSWORD_MISMATCH = "Password do not match!";
 	private static final String PARAM_PASS = "password";
 	private static final String PARAM_CONF_PASS = "confirmed-password";
 	private static final String REDIRECT_TO_REG = "registration.jsp";
@@ -58,7 +59,7 @@ public class PasswordsFilter implements Filter {
 				LOG.warn("Password is incorrect");
 				request.setAttribute(PARAM_PASS_ERROR, WRONG_PASSWORD);
 				request.setAttribute(TYPE, TYPE_ERROR);
-				LOG.debug("Forwarding back to " + REDIRECT_TO_REG);
+				LOG.debug("Forwarding back to {}", REDIRECT_TO_REG);
 				request.getRequestDispatcher(REDIRECT_TO_REG).forward(request, response);
 
 			} else if (!password.equals(confirmedPassword)) {
@@ -66,7 +67,7 @@ public class PasswordsFilter implements Filter {
 				LOG.warn("Passwords do not match");
 				request.setAttribute(PARAM_PASS_MISSMATCH, WRONG_PASSWORD_MISMATCH);
 				request.setAttribute(TYPE, TYPE_ERROR);
-				LOG.debug("Forwarding back to " + REDIRECT_TO_REG);
+				LOG.debug("Forwarding back to {}", REDIRECT_TO_REG);
 				request.getRequestDispatcher(REDIRECT_TO_REG).forward(request, response);
 
 			} else {
