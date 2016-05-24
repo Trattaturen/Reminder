@@ -46,6 +46,7 @@
 					</tbody>
 				</table>
 				<br> <input class="button" type="submit" value="login">
+				<a href="register">Sign up</a>
 			</form>
 		</div>
 	</div>
