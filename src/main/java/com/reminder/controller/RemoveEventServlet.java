@@ -58,7 +58,7 @@ public class RemoveEventServlet extends HttpServlet {
 			type = TYPE_ERROR;
 
 		} catch (Exception e) {
-			LOG.error("Wrong parameters {}",  e);
+			LOG.error("Wrong parameters {}", e);
 			message = (PARAMETER_ERROR + BREAK + e.getMessage());
 			type = TYPE_ERROR;
 

@@ -15,7 +15,14 @@
 				<a class="button active" href="display">Dashboard</a>
 			</div>
 			<div class = "registration-area">
-				<a class="registration-link" href="register">Sign up</a>
+				<c:if test="${empty user}">
+				<a class="registration-link" href="register">Sign up | </a> 
+				<a class="registration-link" href="login">Log In</a>
+				</c:if>
+				<c:if test="${not empty user}">
+				<span class="registration-link">${user}</span>
+				<a class="registration-link" href="LogoutServlet"> | Log Out</a>
+				</c:if>
 			</div>
 		</div>
 	</div>

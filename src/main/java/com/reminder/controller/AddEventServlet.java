@@ -41,7 +41,7 @@ public class AddEventServlet extends HttpServlet {
 
 		LOG.debug("GET request");
 		LOG.debug("GET request redirected to {}", REDIRECT_TO);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

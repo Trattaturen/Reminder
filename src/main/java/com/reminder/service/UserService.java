@@ -10,5 +10,11 @@ public class UserService {
 		
 		return UserRepoHandler.add(user);
 	}
+	
+	public static boolean findUser(String mail, String password){
+		
+		return UserRepoHandler.findUser(mail, password);
+		
+	}
 
 }

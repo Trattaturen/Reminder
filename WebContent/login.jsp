@@ -14,16 +14,19 @@
 				<a class="button" href="display">Dashboard</a>
 			</div>
 			<div class="registration-area">
-				<a class="registration-link" href="register">Sign up | </a> <a
-					class="registration-link" href="login">Log In</a>
+				<a class="registration-link" href="register">Sign up | </a>
+				<a class="registration-link" href="login">Log In</a>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 
 		<div class="content clearfix">
-			<h1>Fill form to Register</h1>
-			<form action="register" method="POST">
+			<c:if test="${not empty message}">
+				<p class="${type}">${message}</p>
+			</c:if>
+			<h1>Input your E-mail and password to Log In</h1>
+			<form action="login" method="POST">
 				<table class="add-table">
 					<tbody>
 						<tr>
@@ -40,16 +43,9 @@
 									<td class="error" style="border: 0;">${pass_error}</td>
 								</c:if></td>
 						</tr>
-						<tr>
-							<td>Confirm password</td>
-							<td><input type="password" name="confirmed-password">
-								<c:if test="${not empty pass_mismatch}">
-									<td class="error" style="border: 0;">${pass_mismatch}</td>
-								</c:if></td>
-						</tr>
 					</tbody>
 				</table>
-				<br> <input class="button" type="submit" value="register">
+				<br> <input class="button" type="submit" value="login">
 			</form>
 		</div>
 	</div>

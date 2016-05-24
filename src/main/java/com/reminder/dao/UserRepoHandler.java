@@ -22,4 +22,13 @@ public class UserRepoHandler {
 
 	}
 
+	public static boolean findUser(String mail, String password) {
+		for (User u : UserRepo.getRepo()) {
+			if (u.getMail().equals(mail) && u.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
