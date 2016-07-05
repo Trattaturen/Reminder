@@ -7,27 +7,25 @@ import com.reminder.model.Event;
 
 public class EventService {
 
-
 	public static boolean add(Event event) {
-		
+
 		return EventRepoHandler.add(event);
 	}
 
-	public static List<Event> getAll() {
-		
-		return EventRepoHandler.getAll();
+	public static List<Event> getAll(int userId) {
+
+		return EventRepoHandler.getAll(userId);
 	}
 
+	public static boolean remove(int eventId) {
 
-	public static boolean remove(int id) {
-
-		return EventRepoHandler.removeById(id);
+		return EventRepoHandler.removeById(eventId);
 
 	}
 
-	public static List<Event> find(String value) {
+	public static List<Event> find(int userId, String value) {
 
-		return EventRepoHandler.findByValue(value);
+		return EventRepoHandler.findByValue(userId, value);
 
 	}
 }

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -23,32 +24,40 @@ public class SearchEventServlet extends HttpServlet {
 	public static final Logger LOG = LogManager.getLogger(SearchEventServlet.class);
 
 	private static final String CONTENT_TYPE = "text/html";
-	private static final String PARAMETER_NAME = "value";
+	private static final String SEARCH_PARAMETER_NAME = "value";
 	private static final String MESSAGE_NOT_FOUND = "Event was not found";
 	private static final String MESSAGE_PARAMETER_ERROR = "Wrong search parameters";
 	private static final String MESSAGE_SUCCESS = "List of found Events";
 	private static final String TYPE_ERROR = "error";
 	private static final String TYPE_SUCCESS = "success";
-	private static final String MESSAGE = "message";
-	private static final String TYPE = "type";
+	private static final String MESSAGE_ATTRIBUTE_NAME = "message";
+	private static final String TYPE_ATTRIBUTE_NAME = "type";
 	private static final String REDIRECT_TO = "dashboard.jsp";
 	private static final String EVENTS = "events";
+	private static final String USER_ID_ATTRIBUTE_NAME = "userId";
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		LOG.debug("POST request");
 
 		response.setContentType(CONTENT_TYPE);
+		HttpSession session = request.getSession();
 
 		String message;
 		String type;
+		int userId = (int) session.getAttribute(USER_ID_ATTRIBUTE_NAME);
 
-		String searchValue = request.getParameter(PARAMETER_NAME);
+		String searchValue = request.getParameter(SEARCH_PARAMETER_NAME);
 		LOG.debug("Validating search parameters");
+
 		if (searchValue != null && searchValue != "") {
+
 			LOG.debug("Search parameters are OK");
-			List<Event> foundEvents = EventService.find(searchValue);
+
+			List<Event> foundEvents = EventService.find(userId, searchValue);
+
 			if (foundEvents.isEmpty()) {
+
 				LOG.debug("Event not found");
 				message = MESSAGE_NOT_FOUND;
 				type = TYPE_ERROR;
@@ -65,8 +74,8 @@ public class SearchEventServlet extends HttpServlet {
 			message = MESSAGE_PARAMETER_ERROR;
 			type = TYPE_ERROR;
 		}
-		request.setAttribute(TYPE, type);
-		request.setAttribute(MESSAGE, message);
+		request.setAttribute(TYPE_ATTRIBUTE_NAME, type);
+		request.setAttribute(MESSAGE_ATTRIBUTE_NAME, message);
 		LOG.debug("Forwarding request to {}", REDIRECT_TO);
 		request.getRequestDispatcher(REDIRECT_TO).forward(request, response);
 	}

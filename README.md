@@ -1,4 +1,13 @@
-# Reminder (Task 7 in progress)
+# Reminder (Task 8)
+
+## DONE:
+
+- Saving users and events to file
+
+- Reading from files
+
+
+## Reminder (Task 7 in progress)
 
 ## DONE:
 
@@ -15,9 +24,7 @@
 5. All JSP`s check (by means of JSTL) if "user" parameter is set to current session if not: displaying "Sign Up|Log In" else: "UserName|Log out"    
 
 
-## TODO:
 
-- Hashcode, cookies implementation;
 
 
 (Task 6 DONE)
