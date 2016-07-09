@@ -38,4 +38,23 @@ public class EventUtil {
 
 	}
 
+	public static void updateEvent(Event event, String description, String type, String remind) {
+		if (!description.isEmpty()) {
+			event.setDescription(description);
+		} else {
+			event.setDescription("");
+		}
+		if (!type.isEmpty()) {
+			event.setType(type);
+		} else {
+			event.setType("");
+		}
+		if (remind != null && !remind.isEmpty()) {
+			event.setRemind(true);
+		} else {
+			event.setRemind(false);
+		}
+
+	}
+
 }

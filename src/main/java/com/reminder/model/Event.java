@@ -8,6 +8,9 @@ public class Event {
 	private String title;
 	private String day;
 	private String time;
+	private String description;
+	private String type;
+	private boolean remind;
 
 	public Event(int userId, String title, String day, String time) {
 
@@ -15,8 +18,8 @@ public class Event {
 		this.title = title;
 		this.day = day;
 		this.time = time;
-		//this.id = count;
-		//count++;
+		// this.id = count;
+		// count++;
 
 	}
 
@@ -70,5 +73,28 @@ public class Event {
 		count = newCount;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public boolean isRemind() {
+		return remind;
+	}
+
+	public void setRemind(boolean remind) {
+		this.remind = remind;
+	}
 
 }

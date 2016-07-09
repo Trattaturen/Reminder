@@ -1,4 +1,4 @@
-package com.reminder.dao;
+package com.reminder.dao.list;
 
 import java.util.ArrayList;
 

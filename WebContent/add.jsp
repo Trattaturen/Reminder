@@ -49,7 +49,7 @@
 						<tr>
 							<td>Type</td>
 							<td><select class="add-input" name="type">
-									<option value="#">Select Event type</option>
+									<option value="">Select Event type</option>
 									<option value="togo">To go</option>
 									<option value="tosee">To see</option>
 									<option value="other">Other</option>

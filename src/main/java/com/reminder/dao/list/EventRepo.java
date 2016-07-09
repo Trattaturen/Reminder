@@ -1,11 +1,9 @@
-package com.reminder.dao;
+package com.reminder.dao.list;
 
 import java.util.ArrayList;
 
 import com.reminder.model.Event;
 
-
-//Why do you need this wraper for ArrayList?
 public class EventRepo {
 
 	private static ArrayList<Event> repo = new ArrayList<Event>();

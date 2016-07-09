@@ -1,4 +1,4 @@
-package com.reminder.dao;
+package com.reminder.dao.file;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,17 +12,18 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.reminder.dao.EventDAO;
 import com.reminder.model.Event;
 import com.reminder.utils.EventUtil;
 
-public class EventRepoHandler {
+public class EventToFileDAOimpl implements EventDAO {
 
-	public static final Logger LOG = LogManager.getLogger(EventRepoHandler.class.getName());
+	public static final Logger LOG = LogManager.getLogger(EventToFileDAOimpl.class.getName());
 
 	private static final String EVENTS_FILE = "EVENTS";
 	private static final String EVENTS_COUNT_FILE = "EVENTS_COUNT";
 
-	public static boolean add(Event event) {
+	public boolean add(Event event) {
 
 		Event.setCount(getCountFromFile());
 		event.setId(Event.getCount());
@@ -40,6 +41,12 @@ public class EventRepoHandler {
 			writer.newLine();
 			writer.write(event.getTime());
 			writer.newLine();
+			writer.write(event.getDescription());
+			writer.newLine();
+			writer.write(event.getType());
+			writer.newLine();
+			writer.write(Boolean.toString(event.isRemind()));
+			writer.newLine();
 			writer.flush();
 			writer.close();
 			LOG.info("Event added to DB");
@@ -54,7 +61,7 @@ public class EventRepoHandler {
 
 	}
 
-	public static boolean removeById(int eventId) {
+	public boolean removeById(int eventId) {
 		boolean deleted = false;
 		try {
 
@@ -81,10 +88,19 @@ public class EventRepoHandler {
 					writer.newLine();
 					writer.write(reader.readLine());// time
 					writer.newLine();
+					writer.write(reader.readLine());// description
+					writer.newLine();
+					writer.write(reader.readLine());// type
+					writer.newLine();
+					writer.write(reader.readLine());// remind
+					writer.newLine();
 					currentUserId = reader.readLine();
 					currentEventId = reader.readLine();
 
 				} else {
+					reader.readLine();
+					reader.readLine();
+					reader.readLine();
 					reader.readLine();
 					reader.readLine();
 					reader.readLine();
@@ -112,7 +128,7 @@ public class EventRepoHandler {
 
 	}
 
-	public static List<Event> getAll(int usedId) {
+	public List<Event> getAll(int usedId) {
 
 		List<Event> allEvents = new ArrayList<Event>();
 
@@ -128,14 +144,18 @@ public class EventRepoHandler {
 					String title = reader.readLine();
 					String day = reader.readLine();
 					String time = reader.readLine();
+					String description = reader.readLine();
+					String type = reader.readLine();
+					String remind = reader.readLine();
 					Event foundEvent = EventUtil.createEvent(uId, title, day, time);
 					foundEvent.setId(eventId);
+					EventUtil.updateEvent(foundEvent, description, type, remind);
 					allEvents.add(foundEvent);
 					currentLine = reader.readLine();
 
 				} else {
 
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < 8; i++)
 						currentLine = reader.readLine();
 				}
 			}
@@ -152,7 +172,7 @@ public class EventRepoHandler {
 
 	}
 
-	public static List<Event> findByValue(int userId, String value) {
+	public List<Event> findByValue(int userId, String value) {
 		LOG.info("Searching for Event");
 
 		List<Event> found = new ArrayList<Event>();

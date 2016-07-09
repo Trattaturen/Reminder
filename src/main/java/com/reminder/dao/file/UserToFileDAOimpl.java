@@ -1,4 +1,4 @@
-package com.reminder.dao;
+package com.reminder.dao.file;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,16 +9,17 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.reminder.dao.UserDAO;
 import com.reminder.model.User;
 
-public class UserRepoHandler {
+public class UserToFileDAOimpl implements UserDAO {
 
-	public static final Logger LOG = LogManager.getLogger(UserRepoHandler.class);
+	public static final Logger LOG = LogManager.getLogger(UserToFileDAOimpl.class);
 
 	private static final String USERS_FILE = "USERS";
 	private static final String USER_COUNT_FILE = "USERS_COUNT";
 
-	public static boolean add(User user) {
+	public boolean add(User user) {
 		User.setCount(getCountFromFile());
 		user.setId(User.getCount());
 		User.setCount(getCountFromFile() + 1);
@@ -45,7 +46,7 @@ public class UserRepoHandler {
 
 	}
 
-	private static void writeCountToFile() {
+	private void writeCountToFile() {
 		try {
 			FileWriter writer = new FileWriter(USER_COUNT_FILE, false);
 			writer.write(String.valueOf(User.getCount()));
@@ -63,7 +64,7 @@ public class UserRepoHandler {
 
 	}
 
-	private static int getCountFromFile() {
+	private int getCountFromFile() {
 
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(USER_COUNT_FILE));
@@ -81,7 +82,7 @@ public class UserRepoHandler {
 		}
 	}
 
-	public static boolean findUser(String mail, String password) {
+	public boolean findUser(String mail, String password) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE));
 			String currentLine;
@@ -110,7 +111,7 @@ public class UserRepoHandler {
 
 	}
 
-	public static int getUserId(String mail) {
+	public int getUserId(String mail) {
 
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE));

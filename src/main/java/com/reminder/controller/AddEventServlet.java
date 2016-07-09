@@ -26,6 +26,9 @@ public class AddEventServlet extends HttpServlet {
 	private static final String TITLE_PARAMETER_NAME = "title";
 	private static final String DAY_PARAMETER_NAME = "day";
 	private static final String TIME_PARAMETER_NAME = "time";
+	private static final String DESCRIPTION_PARAMETER_NAME = "description";
+	private static final String TYPE_PARAMETER_NAME = "type";
+	private static final String REMIND_PARAMETER_NAME = "remind";
 	private static final String USER_ID_ATTRIBUTE_NAME = "userId";
 	private static final String CONTENT_TYPE = "text/html";
 	private static final String MESSSAGE_SUCCESS = "Success! Event was added.";
@@ -63,7 +66,7 @@ public class AddEventServlet extends HttpServlet {
 		try {
 			Event newEvent = EventUtil.createEvent(userId, request.getParameter(TITLE_PARAMETER_NAME), request.getParameter(DAY_PARAMETER_NAME),
 					request.getParameter(TIME_PARAMETER_NAME));
-
+			EventUtil.updateEvent(newEvent, request.getParameter(DESCRIPTION_PARAMETER_NAME), request.getParameter(TYPE_PARAMETER_NAME), request.getParameter(REMIND_PARAMETER_NAME));
 			if (EventService.add(newEvent)) {
 				LOG.debug("Event added");
 				message = MESSSAGE_SUCCESS;
