@@ -21,16 +21,13 @@ public class EventToFileDAOimpl implements EventDAO {
 	public static final Logger LOG = LogManager.getLogger(EventToFileDAOimpl.class.getName());
 
 	private static final String EVENTS_FILE = "EVENTS";
-	private static final String EVENTS_COUNT_FILE = "EVENTS_COUNT";
 
 	public boolean add(Event event) {
 
-		Event.setCount(getCountFromFile());
-		event.setId(Event.getCount());
-		Event.setCount(getCountFromFile() + 1);
-		writeCountToFile();
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(EVENTS_FILE, true));
+		event.setId(EventUtil.getCount());
+
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(EVENTS_FILE, true));) {
+
 			writer.write(String.valueOf(event.getUserId()));
 			writer.newLine();
 			writer.write(String.valueOf(event.getId()));
@@ -47,8 +44,6 @@ public class EventToFileDAOimpl implements EventDAO {
 			writer.newLine();
 			writer.write(Boolean.toString(event.isRemind()));
 			writer.newLine();
-			writer.flush();
-			writer.close();
 			LOG.info("Event added to DB");
 			return true;
 		} catch (IOException ex) {
@@ -63,16 +58,13 @@ public class EventToFileDAOimpl implements EventDAO {
 
 	public boolean removeById(int eventId) {
 		boolean deleted = false;
-		try {
+		File originalFile = new File(EVENTS_FILE);
+		File tempFile = new File(originalFile.getAbsolutePath() + ".tmp");
 
-			File originalFile = new File(EVENTS_FILE);
-			File tempFile = new File(originalFile.getAbsolutePath() + ".tmp");
-
-			BufferedReader reader = new BufferedReader(new FileReader(originalFile));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+		try (BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));) {
 
 			String currentUserId = reader.readLine();
-
 			String currentEventId = reader.readLine();
 
 			while (currentUserId != null) {
@@ -98,12 +90,8 @@ public class EventToFileDAOimpl implements EventDAO {
 					currentEventId = reader.readLine();
 
 				} else {
-					reader.readLine();
-					reader.readLine();
-					reader.readLine();
-					reader.readLine();
-					reader.readLine();
-					reader.readLine();
+
+					skipLines(reader, 6);
 					currentUserId = reader.readLine();
 					currentEventId = reader.readLine();
 					deleted = true;
@@ -112,7 +100,6 @@ public class EventToFileDAOimpl implements EventDAO {
 			writer.flush();
 			writer.close();
 			reader.close();
-
 			originalFile.delete();
 			tempFile.renameTo(originalFile);
 			return deleted;
@@ -132,8 +119,8 @@ public class EventToFileDAOimpl implements EventDAO {
 
 		List<Event> allEvents = new ArrayList<Event>();
 
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(EVENTS_FILE));
+		try (BufferedReader reader = new BufferedReader(new FileReader(EVENTS_FILE));) {
+
 			String currentLine = reader.readLine();
 
 			while (currentLine != null) {
@@ -155,18 +142,16 @@ public class EventToFileDAOimpl implements EventDAO {
 
 				} else {
 
-					for (int i = 0; i < 8; i++)
-						currentLine = reader.readLine();
+					skipLines(reader, 8);
 				}
 			}
-			reader.close();
 			return allEvents;
 
 		} catch (IOException ex) {
-			LOG.info("File with events not found", ex);
+			LOG.info("File with events not found");
 			return allEvents;
 		} catch (Exception e) {
-			LOG.warn("File with events not found", e);
+			LOG.warn("File with events not found");
 			return allEvents;
 		}
 
@@ -188,38 +173,16 @@ public class EventToFileDAOimpl implements EventDAO {
 		return found;
 	}
 
-	private static int getCountFromFile() {
-
-		try (BufferedReader reader = new BufferedReader(new FileReader(EVENTS_COUNT_FILE));) {
-			int count = Integer.parseInt(reader.readLine());
-			if (count != 0) {
-				return count;
+	private BufferedReader skipLines(BufferedReader reader, int linesQuantity) {
+		for (int i = linesQuantity; i > 0; i--) {
+			try {
+				reader.readLine();
+			} catch (IOException e) {
+				LOG.warn("Event file was modified during reading {}", e);
 			}
-
-			return 1;
-
-		} catch (Exception e) {
-			LOG.debug("File with events count not found");
-			return 1;
 		}
+		return reader;
+
 	}
 
-	private static void writeCountToFile() {
-
-		try {
-			FileWriter writer = new FileWriter(EVENTS_COUNT_FILE, false);
-			writer.write(String.valueOf(Event.getCount()));
-			writer.flush();
-			writer.close();
-			LOG.info("Count increased and added to DB");
-
-		} catch (IOException ex) {
-			LOG.warn("No EVENTS file found {}");
-
-		} catch (Exception e) {
-			LOG.warn("Problems writing events count {}", e);
-
-		}
-
-	}
 }

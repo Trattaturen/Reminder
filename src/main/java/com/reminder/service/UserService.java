@@ -6,22 +6,22 @@ import com.reminder.model.User;
 
 public class UserService {
 
-	private static UserDAO dao = new UserToFileDAOimpl();
+	private static UserDAO userDao = new UserToFileDAOimpl();
 
 	public static boolean add(User user) {
 
-		return dao.add(user);
+		return userDao.add(user);
 	}
 
 	public static boolean findUser(String mail, String password) {
 
-		return dao.findUser(mail, password);
+		return userDao.findUser(mail, password);
 
 	}
 
 	public static int getUserId(String mail) {
 
-		return dao.getUserId(mail);
+		return userDao.getUserId(mail);
 
 	}
 

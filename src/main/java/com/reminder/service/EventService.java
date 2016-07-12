@@ -8,27 +8,27 @@ import com.reminder.model.Event;
 
 public class EventService {
 
-	private static EventDAO dao = new EventToFileDAOimpl();
+	private static EventDAO eventDao = new EventToFileDAOimpl();
 
 	public static boolean add(Event event) {
 
-		return dao.add(event);
+		return eventDao.add(event);
 	}
 
 	public static List<Event> getAll(int userId) {
 
-		return dao.getAll(userId);
+		return eventDao.getAll(userId);
 	}
 
 	public static boolean remove(int eventId) {
 
-		return dao.removeById(eventId);
+		return eventDao.removeById(eventId);
 
 	}
 
 	public static List<Event> find(int userId, String value) {
 
-		return dao.findByValue(userId, value);
+		return eventDao.findByValue(userId, value);
 
 	}
 }
