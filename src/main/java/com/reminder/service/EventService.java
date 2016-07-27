@@ -3,12 +3,12 @@ package com.reminder.service;
 import java.util.List;
 
 import com.reminder.dao.EventDAO;
-import com.reminder.dao.file.EventToFileDAOimpl;
+import com.reminder.dao.serilization.EventSerializeToFileDAOimpl;
 import com.reminder.model.Event;
 
 public class EventService {
 
-	private static EventDAO eventDao = new EventToFileDAOimpl();
+	private static EventDAO eventDao = new EventSerializeToFileDAOimpl();
 
 	public static boolean add(Event event) {
 

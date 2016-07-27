@@ -24,6 +24,7 @@ public class EventToFileDAOimpl implements EventDAO {
 
 	public boolean add(Event event) {
 
+		LOG.debug("Event is {}", event.toString());
 		event.setId(EventUtil.getCount());
 
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(EVENTS_FILE, true));) {
@@ -61,9 +62,12 @@ public class EventToFileDAOimpl implements EventDAO {
 		File originalFile = new File(EVENTS_FILE);
 		File tempFile = new File(originalFile.getAbsolutePath() + ".tmp");
 
-		try (BufferedReader reader = new BufferedReader(new FileReader(originalFile));
-				BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));) {
+		BufferedReader reader = null;
+		BufferedWriter writer = null;
+		try {
 
+			reader = new BufferedReader(new FileReader(originalFile));
+			writer = new BufferedWriter(new FileWriter(tempFile));
 			String currentUserId = reader.readLine();
 			String currentEventId = reader.readLine();
 
@@ -97,12 +101,6 @@ public class EventToFileDAOimpl implements EventDAO {
 					deleted = true;
 				}
 			}
-			writer.flush();
-			writer.close();
-			reader.close();
-			originalFile.delete();
-			tempFile.renameTo(originalFile);
-			return deleted;
 
 		} catch (IOException ex) {
 			LOG.info("Problems with EVENTS file {}", ex);
@@ -111,7 +109,21 @@ public class EventToFileDAOimpl implements EventDAO {
 			LOG.warn("Problems with removing event {}", e);
 			return false;
 
+		} finally {
+			
+			try {
+				writer.flush();
+				writer.close();
+				reader.close();
+				originalFile.delete();
+				tempFile.renameTo(originalFile);
+				
+			} catch (IOException e) {
+				LOG.error("Could not close FileWriter/Reader! {}", e);
+			}
+
 		}
+		return deleted;
 
 	}
 
