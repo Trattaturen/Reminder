@@ -1,5 +1,24 @@
 # Reminder (Task 8)
 
+
+
+
+
+
+
+
+
+
+##Reminder (Task 8)
+
+## DONE:
+
+- Serialization of Users List, Events List on server startup/redeploy of app
+
+- Deserialization of Users List, Events List on server shutdown
+
+
+
 ## DONE:
 
 - Saving users and events to file
@@ -7,7 +26,7 @@
 - Reading from files
 
 
-## Reminder (Task 7 in progress)
+(Task 7 done)
 
 ## DONE:
 

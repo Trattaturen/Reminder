@@ -5,12 +5,15 @@ import org.apache.logging.log4j.Logger;
 
 import com.reminder.dao.UserDAO;
 import com.reminder.model.User;
+import com.reminder.utils.UserUtil;
 
 public class UserToListDAOimpl implements UserDAO {
 
 	public static final Logger LOG = LogManager.getLogger(UserToListDAOimpl.class);
 
 	public boolean add(User user) {
+
+		user.setId(UserUtil.getCount());
 
 		try {
 			UserRepo.getRepo().add(user);
@@ -24,6 +27,9 @@ public class UserToListDAOimpl implements UserDAO {
 	}
 
 	public boolean findUser(String mail, String password) {
+		if (UserRepo.getRepo() == null) {
+			return false;
+		}
 		for (User u : UserRepo.getRepo()) {
 			if (u.getMail().equals(mail) && u.getPassword().equals(password)) {
 				return true;

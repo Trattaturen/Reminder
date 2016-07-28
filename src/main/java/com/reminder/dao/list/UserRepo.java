@@ -12,4 +12,9 @@ public class UserRepo {
 		return repo;
 	}
 
+	public static void setRepo(ArrayList<User> repo) {
+		UserRepo.repo = repo;
+
+	}
+
 }

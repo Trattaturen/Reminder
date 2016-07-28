@@ -8,12 +8,15 @@ import org.apache.logging.log4j.LogManager;
 
 import com.reminder.dao.EventDAO;
 import com.reminder.model.Event;
+import com.reminder.utils.EventUtil;
 
 public class EventToListDAOimpl implements EventDAO {
 
 	public static final Logger LOG = LogManager.getLogger(EventToListDAOimpl.class.getName());
 
 	public boolean add(Event event) {
+
+		event.setId(EventUtil.getCount());
 
 		try {
 			EventRepo.getRepo().add(event);

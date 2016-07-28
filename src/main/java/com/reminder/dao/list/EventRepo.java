@@ -12,4 +12,10 @@ public class EventRepo {
 		return repo;
 	}
 
+	public static void setRepo(ArrayList<Event> repo) {
+		EventRepo.repo = repo;
+	}
+	
+	
+
 }

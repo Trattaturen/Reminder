@@ -1,12 +1,12 @@
 package com.reminder.service;
 
 import com.reminder.dao.UserDAO;
-import com.reminder.dao.file.UserToFileDAOimpl;
+import com.reminder.dao.list.UserToListDAOimpl;
 import com.reminder.model.User;
 
 public class UserService {
 
-	private static UserDAO userDao = new UserToFileDAOimpl();
+	private static UserDAO userDao = new UserToListDAOimpl();
 
 	public static boolean add(User user) {
 
