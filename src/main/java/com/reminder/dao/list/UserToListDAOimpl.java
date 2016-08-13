@@ -16,7 +16,7 @@ public class UserToListDAOimpl implements UserDAO {
 		user.setId(UserUtil.getCount());
 
 		try {
-			UserRepo.getRepo().add(user);
+			UserRepo.getInstance().getRepo().add(user);
 			LOG.info("User added to DB");
 			return true;
 		} catch (Exception e) {
@@ -27,10 +27,10 @@ public class UserToListDAOimpl implements UserDAO {
 	}
 
 	public boolean findUser(String mail, String password) {
-		if (UserRepo.getRepo() == null) {
+		if (UserRepo.getInstance().getRepo() == null) {
 			return false;
 		}
-		for (User u : UserRepo.getRepo()) {
+		for (User u : UserRepo.getInstance().getRepo()) {
 			if (u.getMail().equals(mail) && u.getPassword().equals(password)) {
 				return true;
 			}
@@ -39,7 +39,7 @@ public class UserToListDAOimpl implements UserDAO {
 	}
 
 	public int getUserId(String mail) {
-		for (User u : UserRepo.getRepo()) {
+		for (User u : UserRepo.getInstance().getRepo()) {
 			if (u.getMail().equals(mail)) {
 				return u.getId();
 			}

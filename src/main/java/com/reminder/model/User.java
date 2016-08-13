@@ -2,13 +2,23 @@ package com.reminder.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
-	
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "user")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class User implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private static int count = 1;
 	private int id;
 	private String mail;
 	private String password;
+
+	public User() {
+
+	}
 
 	public User(String mail, String password) {
 		this.mail = mail;

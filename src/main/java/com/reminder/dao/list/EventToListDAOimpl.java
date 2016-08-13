@@ -19,7 +19,7 @@ public class EventToListDAOimpl implements EventDAO {
 		event.setId(EventUtil.getCount());
 
 		try {
-			EventRepo.getRepo().add(event);
+			EventRepo.getInstance().getRepo().add(event);
 			LOG.info("Event added to List");
 			return true;
 		} catch (Exception e) {
@@ -31,10 +31,10 @@ public class EventToListDAOimpl implements EventDAO {
 
 	public boolean removeById(int id) {
 
-		for (Event event : EventRepo.getRepo()) {
+		for (Event event : EventRepo.getInstance().getRepo()) {
 			LOG.info("Searching for Event to remove");
 			if (event.getId() == id) {
-				EventRepo.getRepo().remove(event);
+				EventRepo.getInstance().getRepo().remove(event);
 				LOG.info("Succesfully removed Event");
 				return true;
 			}
@@ -46,7 +46,7 @@ public class EventToListDAOimpl implements EventDAO {
 
 	public List<Event> getAll(int usedId) {
 		List<Event> allEvents = new ArrayList<Event>();
-		for (Event e : EventRepo.getRepo()) {
+		for (Event e : EventRepo.getInstance().getRepo()) {
 			if (e.getUserId() == usedId) {
 				allEvents.add(e);
 			}
@@ -58,7 +58,7 @@ public class EventToListDAOimpl implements EventDAO {
 	public List<Event> findByValue(int userId, String value) {
 		LOG.info("Searching for Event");
 		List<Event> found = new ArrayList<Event>();
-		for (Event e : EventRepo.getRepo()) {
+		for (Event e : EventRepo.getInstance().getRepo()) {
 			if (e.getUserId() == userId && (e.getTitle().toLowerCase().equals(value.toLowerCase())
 					|| e.getDay().toLowerCase().equals(value.toLowerCase()) || e.getTime().equals(value))) {
 				found.add(e);

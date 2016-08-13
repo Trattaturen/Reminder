@@ -2,6 +2,12 @@ package com.reminder.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "event")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -15,6 +21,10 @@ public class Event implements Serializable {
 	private String type;
 	private boolean remind;
 
+	public Event(){
+		
+	}
+	
 	public Event(int userId, String title, String day, String time) {
 
 		this.userId = userId;
